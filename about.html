@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>League of Arab States</title>
+<style>
+  :root{
+    --green-dark:#173a2c;
+    --green-darker:#0f2b21;
+    --green-mid:#1f4534;
+    --gold:#d6a94a;
+    --gold-dark:#c69735;
+    --gray-bg:#f4f4f2;
+    --text-dark:#1c1c1c;
+    --text-light:#f5f5f0;
+    --border-light:#e5e5e0;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Segoe UI', Tahoma, Arial, sans-serif;
+    color:var(--text-dark);
+    background:#fff;
+  }
+  html[dir="rtl"] body{ font-family:'Segoe UI', Tahoma, 'Cairo', Arial, sans-serif; }
+  a{ text-decoration:none; color:inherit; }
+  img{ max-width:100%; display:block; }
+  ul{ list-style:none; margin:0; padding:0; }
+  button{ font-family:inherit; cursor:pointer; border:none; }
+
+  /* ===== Header ===== */
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 40px; border-bottom:1px solid var(--border-light);
+  }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .brand-emblem{
+    width:46px; height:46px; border-radius:50%;
+    background: transparent;
+    border:none;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--gold); font-size:20px; flex:none;
+    overflow:hidden;
+  }
+  .brand-emblem img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .brand-text{ line-height:1.15; }
+  .brand-text .ar-line{ font-size:15px; font-weight:600; color:var(--green-dark); }
+  .brand-text .en-line{ font-size:12px; letter-spacing:.5px; font-weight:700; color:var(--green-dark); }
+
+  .top-right{ display:flex; align-items:center; gap:22px; }
+  .lang-switch{ font-size:13px; font-weight:600; color:#444; display:flex; gap:6px; }
+  .lang-switch button{ background:none; color:#666; font-size:13px; font-weight:600; padding:2px; }
+  .lang-switch button.active{ color:var(--green-dark); text-decoration:underline; }
+  .search-box{ display:flex; align-items:center; border:1px solid #ccc; border-radius:4px; overflow:hidden; }
+  .search-box input{ border:none; padding:7px 10px; font-size:13px; outline:none; width:160px; }
+  .search-box button{ background:var(--green-dark); color:#fff; padding:7px 12px; }
+
+  .navbar{
+    display:flex; align-items:center; justify-content:center;
+    background:#fff; border-bottom:1px solid var(--border-light);
+    padding:0 40px;
+  }
+  .navbar ul{ display:flex; gap:34px; }
+  .navbar li{ position:relative; }
+  .navbar a{
+    display:block; padding:14px 0; font-size:13px; font-weight:700;
+    letter-spacing:.4px; color:#333; white-space:nowrap;
+  }
+  .navbar li.active a{ color:var(--green-dark); border-bottom:3px solid var(--gold); }
+  .navbar a:hover{ color:var(--green-dark); }
+  .caret{ font-size:10px; margin-inline-start:4px; }
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative; min-height:320px; display:flex; align-items:center;
+    background:
+      linear-gradient(90deg, rgba(15,30,24,.92) 0%, rgba(15,30,24,.55) 55%, rgba(15,30,24,.25) 100%),
+      url('https://images.unsplash.com/photo-1591474200742-8e512e6f98f8?w=1400&q=80') center/cover;
+    color:#fff; padding:50px 60px;
+  }
+  html[dir="rtl"] .hero{
+    background:
+      linear-gradient(270deg, rgba(15,30,24,.92) 0%, rgba(15,30,24,.55) 55%, rgba(15,30,24,.25) 100%),
+      url('https://images.unsplash.com/photo-1591474200742-8e512e6f98f8?w=1400&q=80') center/cover;
+  }
+  .hero-inner{ max-width:600px; }
+  .hero h1{ font-size:26px; line-height:1.4; margin:0 0 6px; font-weight:600; }
+  .hero h2{ font-size:32px; line-height:1.3; margin:0 0 26px; font-weight:800; letter-spacing:.5px; }
+  .hero-buttons{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{ padding:12px 22px; font-size:13px; font-weight:700; border-radius:3px; letter-spacing:.3px; }
+  .btn-gold{ background:var(--gold); color:var(--green-darker); }
+  .btn-gold:hover{ background:var(--gold-dark); }
+  .btn-outline{ background:transparent; border:1px solid #fff; color:#fff; }
+  .btn-outline:hover{ background:rgba(255,255,255,.12); }
+
+  /* ===== Section shell ===== */
+  section{ padding:46px 40px; }
+  .section-head{
+    display:flex; align-items:center; justify-content:space-between; margin-bottom:24px;
+  }
+  .section-head h2{ font-size:20px; letter-spacing:.5px; font-weight:800; color:var(--green-dark); margin:0; }
+  .arrow-controls{ display:flex; gap:8px; }
+  .arrow-controls button{
+    width:32px; height:32px; border-radius:50%; border:1px solid #ccc; background:#fff;
+    display:flex; align-items:center; justify-content:center; color:#555;
+  }
+  .icon-heading{ display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center; margin-bottom:26px; }
+  .icon-circle{ font-size:26px; color:var(--green-dark); }
+
+  /* ===== News cards ===== */
+  .news-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .news-card{
+    background:#fff;
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow:0 2px 10px rgba(0,0,0,.06);
+    aspect-ratio:1 / 1;
+    display:flex;
+    flex-direction:column;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .news-card:hover{
+    transform:scale(1.03);
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+  }
+  .news-card img{ width:100%; height:58%; object-fit:cover; border-radius:0; flex-shrink:0; }
+  .news-body{ padding:14px 14px 16px; display:flex; flex-direction:column; justify-content:center; flex:1; }
+  .news-date{ font-size:11px; color:#888; margin-bottom:6px; }
+  .news-title{ font-size:15px; font-weight:700; margin:0 0 8px; color:var(--text-dark); }
+  .news-desc{ font-size:12.5px; color:#666; line-height:1.6; margin:0 0 8px; }
+  .news-time{ font-size:11px; color:#999; }
+
+  /* ===== Initiatives grid ===== */
+  .bg-gray{ background:var(--gray-bg); }
+  .init-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .init-card img{ width:100%; height:150px; object-fit:cover; border-radius:4px; }
+  .init-body{ padding:12px 2px; }
+  .init-title{ font-size:14px; font-weight:700; margin:0 0 6px; }
+  .init-desc{ font-size:12px; color:#666; line-height:1.5; margin:0; }
+
+  /* ===== Programs carousel ===== */
+  .programs-row{ display:flex; gap:20px; overflow-x:auto; padding-bottom:6px; }
+  .program-card{ flex:0 0 220px; border:1px solid var(--border-light); border-radius:4px; overflow:hidden; }
+  .program-card img{ width:100%; height:110px; object-fit:cover; }
+  .program-body{ padding:12px; }
+  .program-title{ font-size:13px; font-weight:700; margin:0 0 4px; }
+  .program-sub{ font-size:11px; color:#888; margin:0; }
+  .programs-wrap{ display:flex; align-items:center; gap:14px; }
+  .programs-wrap .arrow-controls button{ flex:none; }
+
+  /* ===== Newsletter ===== */
+  .newsletter-box{
+    background:linear-gradient(120deg,var(--green-darker),var(--green-mid));
+    color:#fff; border-radius:6px; padding:34px 40px;
+    display:flex; align-items:center; justify-content:space-between; gap:30px; flex-wrap:wrap;
+  }
+  .newsletter-left h3{ font-size:20px; line-height:1.4; margin:0; font-weight:800; max-width:280px; }
+  .newsletter-right{ text-align:start; }
+  .newsletter-label{ font-size:12px; letter-spacing:.5px; color:#cfe0d6; margin-bottom:10px; font-weight:600; }
+  .newsletter-form{ display:flex; gap:10px; }
+  .newsletter-form input{
+    padding:11px 14px; border-radius:3px; border:none; font-size:13px; width:220px; outline:none;
+  }
+  .newsletter-links{ margin-top:10px; font-size:11.5px; color:#cfe0d6; }
+  .newsletter-links a{ text-decoration:underline; color:#e9d9a8; }
+
+  /* ===== Careers ===== */
+  .careers-grid{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  .career-card{ border-radius:6px; padding:24px 26px; color:#fff; }
+  .career-card.dark{ background:var(--green-darker); }
+  .career-card.mid{ background:var(--green-mid); }
+  .career-date{ font-size:11px; color:#cfe0d6; margin-bottom:8px; }
+  .career-title{ font-size:16px; font-weight:800; margin:0 0 10px; line-height:1.4; }
+  .career-desc{ font-size:12.5px; line-height:1.7; color:#dcebe2; margin:0 0 12px; }
+  .career-openings{ font-size:12.5px; margin-bottom:14px; }
+  .career-openings p{ margin:0 0 6px; font-weight:700; }
+  .career-openings ul{ padding-inline-start:18px; list-style:disc; color:#dcebe2; }
+  .career-openings li{ margin-bottom:2px; }
+
+  /* ===== Footer ===== */
+footer{
+  background:var(--green-darker);
+  color:#cfe0d6;
+  padding:40px 40px 0;
+}
+
+.footer-top{
+  display:flex;
+  gap:60px;
+  flex-wrap:wrap;
+  padding-bottom:30px;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+
+.footer-brand{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  flex:1;
+  min-width:220px;
+  padding-left:20px;
+}
+
+.footer-brand .brand-emblem{
+  width:110px;
+  height:110px;
+  transform:translateX(10px);
+}
+
+.footer-brand .brand-text .ar-line{
+    color:#fff;
+    font-size:22px;
+    font-weight:700;
+}
+
+.footer-brand .brand-text .en-line{
+    color:#fff;
+    font-size:16px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.footer-cols{
+  display:flex;
+  gap:50px;
+  flex-wrap:wrap;
+  flex:2;
+}
+
+.footer-col h4{
+  font-size:12.5px;
+  letter-spacing:.5px;
+  color:var(--gold);
+  margin:14px 34px 14px;
+  font-weight:800;
+}
+
+.footer-col ul li{
+  margin-bottom:10px;
+  margin-left:34px;
+  font-size:12.5px;
+}
+
+.footer-col ul li a:hover{
+  color:#fff;
+}
+
+.footer-social{
+  flex:1;
+  min-width:200px;
+}
+
+.social-icons{
+  display:flex;
+  gap:10px;
+  margin-bottom:16px;
+}
+
+.social-icons span{
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  background:rgba(255,255,255,.1);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:13px;
+}
+
+.footer-contact li{
+  font-size:12px;
+  margin-bottom:8px;
+}
+
+.footer-bottom{
+  text-align:center;
+  font-size:11.5px;
+  padding:16px 0;
+  color:#9db3a6;
+}
+
+  /* ===== About page ===== */
+  .page-hero{
+    position:relative; min-height:300px; display:flex; align-items:center;
+    background:linear-gradient(90deg, rgba(15,30,24,.92) 0%, rgba(15,30,24,.72) 100%),
+      url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1400&q=80') center/cover;
+    color:#fff; padding:50px 40px;
+  }
+  .page-hero-content{ max-width:760px; }
+  .page-hero h1{ font-size:32px; line-height:1.25; margin:0 0 12px; font-weight:800; }
+  .page-hero p{ font-size:15px; line-height:1.8; color:#e9efe9; margin:0; }
+  .page-grid{ display:grid; grid-template-columns:2fr 1fr; gap:24px; margin-top:24px; }
+  .article-card{
+    background:#fff; border:1px solid var(--border-light); border-radius:10px; padding:24px;
+    box-shadow:0 4px 16px rgba(0,0,0,.04);
+  }
+  .article-card h2{ margin:0 0 12px; font-size:20px; color:var(--green-dark); }
+  .article-card p{ margin:0 0 12px; font-size:14.5px; line-height:1.8; color:#555; }
+  .highlight-list{ padding-left:18px; margin:8px 0 0; color:#555; }
+  .highlight-list li{ margin-bottom:8px; }
+  .stats-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:24px; }
+  .stat-box{ background:var(--gray-bg); border-radius:8px; padding:18px; }
+  .stat-box strong{ display:block; font-size:22px; color:var(--green-dark); margin-bottom:4px; }
+  .stat-box span{ font-size:12px; color:#666; }
+  .quote-box{
+    margin-top:24px; background:linear-gradient(120deg,var(--green-darker),var(--green-mid));
+    color:#fff; border-radius:10px; padding:24px 28px;
+  }
+  .quote-box p{ margin:0; font-size:15px; line-height:1.8; }
+
+  /* ===== Responsive ===== */
+  @media (max-width:900px){
+    .topbar, .navbar, section, .page-hero{ padding-left:18px; padding-right:18px; }
+    .navbar ul{ flex-wrap:wrap; gap:16px; justify-content:center; }
+    .news-grid, .init-grid, .stats-row, .page-grid{ grid-template-columns:1fr; }
+    .careers-grid{ grid-template-columns:1fr; }
+    .newsletter-box{ flex-direction:column; align-items:flex-start; }
+    .hero h2{ font-size:24px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-emblem">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Emblem_of_the_Arab_League.svg/500px-Emblem_of_the_Arab_League.svg.png?_=20240113183340" alt="League of Arab States logo">
+      </div>
+      <div class="brand-text">
+        <div class="ar-line" data-i18n="brand_ar">جامعة الدول العربية</div>
+        <div class="en-line" >LEAGUE OF ARAB STATES</div>
+      </div>
+    </div>
+    <div class="top-right">
+      <div class="lang-switch">
+        <button id="btnAr" onclick="setLang('ar')">العربية</button>
+        <span>|</span>
+        <button id="btnEn" onclick="setLang('en')">English</button>
+      </div>
+      <div class="search-box">
+        <input type="text" data-i18n-placeholder="search_ph" placeholder="Search">
+        <button>&#128269;</button>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html" data-i18n="nav_home">HOME</a></li>
+      <li class="active"><a href="about.html" data-i18n="nav_about">ABOUT THE LEAGUE</a></li>
+      <li><a href="news.html" data-i18n="nav_news">NEWS & UPDATES</a></li>
+      <li><a href="initiatives.html" data-i18n="nav_initiatives">INITIATIVES</a></li>
+      <li><a href="achievements.html" data-i18n="nav_achievements">ACHIEVEMENTS</a></li>
+      <li><a href="publications.html" data-i18n="nav_publications">PUBLICATIONS</a>
+      <li><a href="careers.html" data-i18n="nav_careers">CAREERS &amp; INTERNSHIPS</a></li>
+      <li><a href="contact.html" data-i18n="nav_contact">CONTACT</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="page-hero-content">
+    <h1 data-i18n="about_hero_title">About the League of Arab States</h1>
+    <p data-i18n="about_hero_text">The League of Arab States is a regional organization that brings together Arab nations in a shared effort to advance cooperation, promote development, and strengthen collective stability across the Middle East and North Africa.</p>
+  </div>
+</section>
+
+<section>
+  <div class="page-grid">
+    <div class="article-card">
+      <h2 data-i18n="about_card1_title">A regional institution rooted in cooperation</h2>
+      <p data-i18n="about_card1_p1">Founded in Cairo in 1945, the League of Arab States was established to strengthen the bonds between Arab countries and to provide a framework for joint action on matters of regional importance. From its earliest years, the organization has worked to support diplomacy, encourage economic collaboration, and preserve the shared interests of its member states.</p>
+      <p data-i18n="about_card1_p2">Today, the League continues to serve as an important platform for dialogue and coordination, addressing issues that span politics, development, culture, social welfare, and regional security. Its work reflects a long-term commitment to unity, resilience, and constructive engagement.</p>
+    </div>
+    <div class="article-card">
+      <h2 data-i18n="about_card2_title">Our role in the Arab world</h2>
+      <p data-i18n="about_card2_p1">The League plays a vital role in helping member states respond to shared challenges and seize common opportunities. Through dialogue, cooperation, and coordinated policy efforts, it supports initiatives that strengthen institutions and improve the quality of life across the region.</p>
+      <ul class="highlight-list">
+        <li data-i18n="about_list1">Promoting dialogue among member states</li>
+        <li data-i18n="about_list2">Supporting regional development and stability</li>
+        <li data-i18n="about_list3">Encouraging cultural and social exchange</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-box">
+      <strong>22</strong>
+      <span data-i18n="about_stat1">Member states united under the League</span>
+    </div>
+    <div class="stat-box">
+      <strong>1945</strong>
+      <span data-i18n="about_stat2">Founded in Cairo as a regional alliance</span>
+    </div>
+    <div class="stat-box">
+      <strong>Regional</strong>
+      <span data-i18n="about_stat3">Focused on cooperation, peace, and development</span>
+    </div>
+  </div>
+
+  <div class="quote-box">
+    <p data-i18n="about_quote">“The League of Arab States stands as a testament to the enduring value of cooperation, regional solidarity, and a shared vision for progress.”</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="brand-emblem">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Emblem_of_the_Arab_League.svg/500px-Emblem_of_the_Arab_League.svg.png?_=20240113183340" alt="League of Arab States logo">
+      </div>
+      <div class="brand-text">
+        <div class="ar-line" data-i18n="brand_ar">جامعة الدول العربية</div>
+        <div class="en-line" data-i18n="brand_en">LEAGUE OF ARAB STATES</div>
+      </div>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4 data-i18n="nav_home">HOME</h4>
+        <ul>
+          <li><a href="about.html" data-i18n="nav_about">About the League</a></li>
+          <li><a href="news.html" data-i18n="nav_news">News &amp; Updates</a></li>
+          <li><a href="initiatives.html" data-i18n="nav_initiatives">Initiatives</a></li>
+          <li><a href="achievements.html" data-i18n="nav_achievements">Achievements</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="nav_initiatives">INITIATIVES</h4>
+        <ul>
+          <li><a href="initiatives.html" data-i18n="footer_init1">Initiative Overview</a></li>
+          <li><a href="initiatives.html" data-i18n="footer_init2">Programs</a></li>
+          <li><a href="initiatives.html" data-i18n="footer_init3">Partnerships</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="nav_publications">PUBLICATIONS</h4>
+        <ul>
+          <li><a href="publications.html" data-i18n="footer_pub1">Reports</a></li>
+          <li><a href="publications.html" data-i18n="footer_pub2">Newsletter</a></li>
+          <li><a href="publications.html" data-i18n="footer_pub3">Media</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-social">
+      <div class="social-icons">
+        <span>&#102;</span><span>&#120;</span><span>&#9993;</span>
+      </div>
+      <ul class="footer-contact">
+        <li>&#9742; +012345678910</li>
+        <li>&#9993; info.sect@las.int</li>
+        <li>&#127760; www.site.eg</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom" data-i18n="copyright">Copyright The League of Arab States</div>
+</footer>
+<script>
+const translations = {
+  brand: {en:"جامعة الدول العربية", ar:"جامعة الدول العربية"},
+  brand: {en:"LEAGUE OF ARAB STATES", ar:"جامعة الدول العربية"},
+  search_ph: {en:"Search", ar:"بحث"},
+  nav_home: {en:"HOME", ar:"الرئيسية"},
+  nav_about: {en:"ABOUT THE LEAGUE", ar:"عن الجامعة"},
+  nav_news: {en:"NEWS & UPDATES", ar:"الأخبار والتحديثات"},
+  nav_initiatives: {en:"INITIATIVES", ar:"المبادرات"},
+  nav_achievements: {en:"ACHIEVEMENTS", ar:"الإنجازات"},
+  nav_publications: {en:"PUBLICATIONS", ar:"المنشورات"},
+  nav_careers: {en:"CAREERS & INTERNSHIPS", ar:"الوظائف والتدريب"},
+  nav_contact: {en:"CONTACT", ar:"الاتصال"},
+  about_hero_title: {en:"About the League of Arab States", ar:"عن جامعة الدول العربية"},
+  about_hero_text: {en:"The League of Arab States is a regional organization that brings together Arab nations in a shared effort to advance cooperation, promote development, and strengthen collective stability across the Middle East and North Africa.", ar:"جامعة الدول العربية هي منظمة إقليمية تجمع الدول العربية في جهد مشترك لتعزيز التعاون والنمو وتدعيم الاستقرار الجماعي في منطقة الشرق الأوسط وشمال أفريقيا."},
+  about_card1_title: {en:"A regional institution rooted in cooperation", ar:"مؤسسة إقليمية متجذرة في التعاون"},
+  about_card1_p1: {en:"Founded in Cairo in 1945, the League of Arab States was established to strengthen the bonds between Arab countries and to provide a framework for joint action on matters of regional importance. From its earliest years, the organization has worked to support diplomacy, encourage economic collaboration, and preserve the shared interests of its member states.", ar:"تأسست جامعة الدول العربية في القاهرة عام 1945 لتعزيز الروابط بين الدول العربية وتوفير إطار للتصرف المشترك في القضايا ذات الأهمية الإقليمية. وقد عملت المنظمة منذ بدايتها على دعم الدبلوماسية وتشجيع التعاون الاقتصادي والحفاظ على المصالح المشتركة للدول الأعضاء."},
+  about_card1_p2: {en:"Today, the League continues to serve as an important platform for dialogue and coordination, addressing issues that span politics, development, culture, social welfare, and regional security. Its work reflects a long-term commitment to unity, resilience, and constructive engagement.", ar:"وتواصل الجامعة اليوم العمل كمنصة مهمة للحوار والتنسيق في قضايا السياسة والتنمية والثقافة والرفاه الاجتماعي والأمن الإقليمي. وتعكس أعمالها التزامًا طويل الأمد بالوحدة والمرونة والتفاعل البناء."},
+  about_card2_title: {en:"Our role in the Arab world", ar:"دورنا في العالم العربي"},
+  about_card2_p1: {en:"The League plays a vital role in helping member states respond to shared challenges and seize common opportunities. Through dialogue, cooperation, and coordinated policy efforts, it supports initiatives that strengthen institutions and improve the quality of life across the region.", ar:"تلعب الجامعة دورًا حيويًا في مساعدة الدول الأعضاء على مواجهة التحديات المشتركة والاستفادة من الفرص المشتركة. ومن خلال الحوار والتعاون والجهود السياسية المنسقة، تدعم المبادرات التي تقوي المؤسسات وتحسن جودة الحياة في المنطقة."},
+  about_list1: {en:"Promoting dialogue among member states", ar:"تعزيز الحوار بين الدول الأعضاء"},
+  about_list2: {en:"Supporting regional development and stability", ar:"دعم التنمية والاستقرار الإقليميين"},
+  about_list3: {en:"Encouraging cultural and social exchange", ar:"تشجيع التبادل الثقافي والاجتماعي"},
+  about_stat1: {en:"Member states united under the League", ar:"دول أعضاء موحدة تحت راية الجامعة"},
+  about_stat2: {en:"Founded in Cairo as a regional alliance", ar:"تأسست في القاهرة كتحالف إقليمي"},
+  about_stat3: {en:"Focused on cooperation, peace, and development", ar:"تركّز على التعاون والسلام والتنمية"},
+  about_quote: {en:"“The League of Arab States stands as a testament to the enduring value of cooperation, regional solidarity, and a shared vision for progress.”", ar:"“تمثل جامعة الدول العربية شهادة على قيمة التعاون والتضامن الإقليمي والرؤية المشتركة للتقدم.”"},
+  footer_home_heading: {en:"HOME", ar:"الرئيسية"},
+  footer_about_heading: {en:"ABOUT", ar:"عن الجامعة"},
+  footer_contact_heading: {en:"CONTACT", ar:"اتصل بنا"},
+  footer_home_link: {en:"Home", ar:"الرئيسية"},
+  footer_news_link: {en:"News", ar:"الأخبار"},
+  footer_initiatives_link: {en:"Initiatives", ar:"المبادرات"},
+  footer_overview_link: {en:"Overview", ar:"نظرة عامة"},
+  footer_achievements_link: {en:"Achievements", ar:"الإنجازات"},
+  footer_contact_link: {en:"Contact", ar:"اتصل بنا"},
+  footer_copyright: {en:"Copyright The League of Arab States", ar:"جميع الحقوق محفوظة لجامعة الدول العربية"}
+};
+function setLang(lang){
+  document.getElementById('htmlRoot').setAttribute('lang', lang);
+  document.getElementById('htmlRoot').setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+  const arBtn = document.getElementById('btnAr');
+  const enBtn = document.getElementById('btnEn');
+  if(arBtn) arBtn.classList.toggle('active', lang === 'ar');
+  if(enBtn) enBtn.classList.toggle('active', lang === 'en');
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if(translations[key]) el.textContent = translations[key][lang];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if(translations[key]) el.setAttribute('placeholder', translations[key][lang]);
+  });
+  localStorage.setItem('las_lang', lang);
+}
+setLang(localStorage.getItem('las_lang') || 'en');
+</script>
+</body>
+</html>

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>League of Arab States</title>
+<style>
+  :root{
+    --green-dark:#173a2c;
+    --green-darker:#0f2b21;
+    --green-mid:#1f4534;
+    --gold:#d6a94a;
+    --gold-dark:#c69735;
+    --gray-bg:#f4f4f2;
+    --text-dark:#1c1c1c;
+    --text-light:#f5f5f0;
+    --border-light:#e5e5e0;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Segoe UI', Tahoma, Arial, sans-serif;
+    color:var(--text-dark);
+    background:#fff;
+  }
+  html[dir="rtl"] body{ font-family:'Segoe UI', Tahoma, 'Cairo', Arial, sans-serif; }
+  a{ text-decoration:none; color:inherit; }
+  img{ max-width:100%; display:block; }
+  ul{ list-style:none; margin:0; padding:0; }
+  button{ font-family:inherit; cursor:pointer; border:none; }
+
+  /* ===== Header ===== */
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 40px; border-bottom:1px solid var(--border-light);
+  }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .brand-emblem{
+    width:46px; height:46px; border-radius:50%;
+    background: transparent;
+    border:none;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--gold); font-size:20px; flex:none;
+    overflow:hidden;
+  }
+  .brand-emblem img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .brand-text{ line-height:1.15; }
+  .brand-text .ar-line{ font-size:15px; font-weight:600; color:var(--green-dark); }
+  .brand-text .en-line{ font-size:12px; letter-spacing:.5px; font-weight:700; color:var(--green-dark); }
+
+  .top-right{ display:flex; align-items:center; gap:22px; }
+  .lang-switch{ font-size:13px; font-weight:600; color:#444; display:flex; gap:6px; }
+  .lang-switch button{ background:none; color:#666; font-size:13px; font-weight:600; padding:2px; }
+  .lang-switch button.active{ color:var(--green-dark); text-decoration:underline; }
+  .search-box{ display:flex; align-items:center; border:1px solid #ccc; border-radius:4px; overflow:hidden; }
+  .search-box input{ border:none; padding:7px 10px; font-size:13px; outline:none; width:160px; }
+  .search-box button{ background:var(--green-dark); color:#fff; padding:7px 12px; }
+
+  .navbar{
+    display:flex; align-items:center; justify-content:center;
+    background:#fff; border-bottom:1px solid var(--border-light);
+    padding:0 40px;
+  }
+  .navbar ul{ display:flex; gap:34px; }
+  .navbar li{ position:relative; }
+  .navbar a{
+    display:block; padding:14px 0; font-size:13px; font-weight:700;
+    letter-spacing:.4px; color:#333; white-space:nowrap;
+  }
+  .navbar li.active a{ color:var(--green-dark); border-bottom:3px solid var(--gold); }
+  .navbar a:hover{ color:var(--green-dark); }
+  .caret{ font-size:10px; margin-inline-start:4px; }
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative; min-height:320px; display:flex; align-items:center;
+    background:
+      linear-gradient(90deg, rgba(15,30,24,.92) 0%, rgba(15,30,24,.55) 55%, rgba(15,30,24,.25) 100%),
+      url('https://images.unsplash.com/photo-1591474200742-8e512e6f98f8?w=1400&q=80') center/cover;
+    color:#fff; padding:50px 60px;
+  }
+  html[dir="rtl"] .hero{
+    background:
+      linear-gradient(270deg, rgba(15,30,24,.92) 0%, rgba(15,30,24,.55) 55%, rgba(15,30,24,.25) 100%),
+      url('https://images.unsplash.com/photo-1591474200742-8e512e6f98f8?w=1400&q=80') center/cover;
+  }
+  .hero-inner{ max-width:600px; }
+  .hero h1{ font-size:26px; line-height:1.4; margin:0 0 6px; font-weight:600; }
+  .hero h2{ font-size:32px; line-height:1.3; margin:0 0 26px; font-weight:800; letter-spacing:.5px; }
+  .hero-buttons{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{ padding:12px 22px; font-size:13px; font-weight:700; border-radius:3px; letter-spacing:.3px; }
+  .btn-gold{ background:var(--gold); color:var(--green-darker); }
+  .btn-gold:hover{ background:var(--gold-dark); }
+  .btn-outline{ background:transparent; border:1px solid #fff; color:#fff; }
+  .btn-outline:hover{ background:rgba(255,255,255,.12); }
+
+  /* ===== Section shell ===== */
+  section{ padding:46px 40px; }
+  .section-head{
+    display:flex; align-items:center; justify-content:space-between; margin-bottom:24px;
+  }
+  .section-head h2{ font-size:20px; letter-spacing:.5px; font-weight:800; color:var(--green-dark); margin:0; }
+  .arrow-controls{ display:flex; gap:8px; }
+  .arrow-controls button{
+    width:32px; height:32px; border-radius:50%; border:1px solid #ccc; background:#fff;
+    display:flex; align-items:center; justify-content:center; color:#555;
+  }
+  .icon-heading{ display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center; margin-bottom:26px; }
+  .icon-circle{ font-size:26px; color:var(--green-dark); }
+
+  /* ===== News cards ===== */
+  .news-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .news-card{
+    background:#fff;
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow:0 2px 10px rgba(0,0,0,.06);
+    aspect-ratio:1 / 1;
+    display:flex;
+    flex-direction:column;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .news-card:hover{
+    transform:scale(1.03);
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+  }
+  .news-card img{ width:100%; height:58%; object-fit:cover; border-radius:0; flex-shrink:0; }
+  .news-body{ padding:14px 14px 16px; display:flex; flex-direction:column; justify-content:center; flex:1; }
+  .news-date{ font-size:11px; color:#888; margin-bottom:6px; }
+  .news-title{ font-size:15px; font-weight:700; margin:0 0 8px; color:var(--text-dark); }
+  .news-desc{ font-size:12.5px; color:#666; line-height:1.6; margin:0 0 8px; }
+  .news-time{ font-size:11px; color:#999; }
+
+  /* ===== Initiatives grid ===== */
+  .bg-gray{ background:var(--gray-bg); }
+  .init-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .init-card img{ width:100%; height:150px; object-fit:cover; border-radius:4px; }
+  .init-body{ padding:12px 2px; }
+  .init-title{ font-size:14px; font-weight:700; margin:0 0 6px; }
+  .init-desc{ font-size:12px; color:#666; line-height:1.5; margin:0; }
+
+  /* ===== Programs carousel ===== */
+  .programs-row{ display:flex; gap:20px; overflow-x:auto; padding-bottom:6px; }
+  .program-card{ flex:0 0 220px; border:1px solid var(--border-light); border-radius:4px; overflow:hidden; }
+  .program-card img{ width:100%; height:110px; object-fit:cover; }
+  .program-body{ padding:12px; }
+  .program-title{ font-size:13px; font-weight:700; margin:0 0 4px; }
+  .program-sub{ font-size:11px; color:#888; margin:0; }
+  .programs-wrap{ display:flex; align-items:center; gap:14px; }
+  .programs-wrap .arrow-controls button{ flex:none; }
+
+  /* ===== Newsletter ===== */
+  .newsletter-box{
+    background:linear-gradient(120deg,var(--green-darker),var(--green-mid));
+    color:#fff; border-radius:6px; padding:34px 40px;
+    display:flex; align-items:center; justify-content:space-between; gap:30px; flex-wrap:wrap;
+  }
+  .newsletter-left h3{ font-size:20px; line-height:1.4; margin:0; font-weight:800; max-width:280px; }
+  .newsletter-right{ text-align:start; }
+  .newsletter-label{ font-size:12px; letter-spacing:.5px; color:#cfe0d6; margin-bottom:10px; font-weight:600; }
+  .newsletter-form{ display:flex; gap:10px; }
+  .newsletter-form input{
+    padding:11px 14px; border-radius:3px; border:none; font-size:13px; width:220px; outline:none;
+  }
+  .newsletter-links{ margin-top:10px; font-size:11.5px; color:#cfe0d6; }
+  .newsletter-links a{ text-decoration:underline; color:#e9d9a8; }
+
+  /* ===== Careers ===== */
+  .careers-grid{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  .career-card{ border-radius:6px; padding:24px 26px; color:#fff; }
+  .career-card.dark{ background:var(--green-darker); }
+  .career-card.mid{ background:var(--green-mid); }
+  .career-date{ font-size:11px; color:#cfe0d6; margin-bottom:8px; }
+  .career-title{ font-size:16px; font-weight:800; margin:0 0 10px; line-height:1.4; }
+  .career-desc{ font-size:12.5px; line-height:1.7; color:#dcebe2; margin:0 0 12px; }
+  .career-openings{ font-size:12.5px; margin-bottom:14px; }
+  .career-openings p{ margin:0 0 6px; font-weight:700; }
+  .career-openings ul{ padding-inline-start:18px; list-style:disc; color:#dcebe2; }
+  .career-openings li{ margin-bottom:2px; }
+
+  /* ===== Footer ===== */
+footer{
+  background:var(--green-darker);
+  color:#cfe0d6;
+  padding:40px 40px 0;
+}
+
+.footer-top{
+  display:flex;
+  gap:60px;
+  flex-wrap:wrap;
+  padding-bottom:30px;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+
+.footer-brand{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  flex:1;
+  min-width:220px;
+  padding-left:20px;
+}
+
+.footer-brand .brand-emblem{
+  width:110px;
+  height:110px;
+  transform:translateX(10px);
+}
+
+.footer-brand .brand-text .ar-line{
+    color:#fff;
+    font-size:22px;
+    font-weight:700;
+}
+
+.footer-brand .brand-text .en-line{
+    color:#fff;
+    font-size:16px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.footer-cols{
+  display:flex;
+  gap:50px;
+  flex-wrap:wrap;
+  flex:2;
+}
+
+.footer-col h4{
+  font-size:12.5px;
+  letter-spacing:.5px;
+  color:var(--gold);
+  margin:14px 34px 14px;
+  font-weight:800;
+}
+
+.footer-col ul li{
+  margin-bottom:10px;
+  margin-left:34px;
+  font-size:12.5px;
+}
+
+.footer-col ul li a:hover{
+  color:#fff;
+}
+
+.footer-social{
+  flex:1;
+  min-width:200px;
+}
+
+.social-icons{
+  display:flex;
+  gap:10px;
+  margin-bottom:16px;
+}
+
+.social-icons span{
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  background:rgba(255,255,255,.1);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:13px;
+}
+
+.footer-contact li{
+  font-size:12px;
+  margin-bottom:8px;
+}
+
+.footer-bottom{
+  text-align:center;
+  font-size:11.5px;
+  padding:16px 0;
+  color:#9db3a6;
+}
+
+  /* ===== Initiatives page ===== */
+  .page-hero{
+    position:relative; min-height:300px; display:flex; align-items:center;
+    background:linear-gradient(90deg, rgba(15,30,24,.92) 0%, rgba(15,30,24,.72) 100%),
+      url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1400&q=80') center/cover;
+    color:#fff; padding:50px 40px;
+  }
+  .page-hero-content{ max-width:760px; }
+  .page-hero h1{ font-size:32px; line-height:1.25; margin:0 0 12px; font-weight:800; }
+  .page-hero p{ font-size:15px; line-height:1.8; color:#e9efe9; margin:0; }
+  .article-layout{ display:grid; grid-template-columns:2fr 1fr; gap:24px; align-items:start; }
+  .article-card{
+    background:#fff; border:1px solid var(--border-light); border-radius:10px; padding:24px;
+    box-shadow:0 4px 16px rgba(0,0,0,.04);
+  }
+  .article-card h2{ margin:0 0 12px; font-size:20px; color:var(--green-dark); }
+  .article-card p{ margin:0 0 12px; font-size:14.5px; line-height:1.8; color:#555; }
+  .info-list{ padding-inline-start:18px; margin:8px 0 0; color:#555; }
+  .info-list li{ margin-bottom:8px; line-height:1.7; }
+  .side-card{ background:var(--gray-bg); border-radius:10px; padding:20px; }
+  .side-card h3{ margin:0 0 10px; font-size:16px; color:var(--green-dark); }
+  .side-card p{ margin:0 0 10px; font-size:13.5px; line-height:1.7; color:#616161; }
+  .side-card ul{ display:grid; gap:8px; }
+  .side-card li{ font-size:13.5px; color:#555; line-height:1.6; }
+  .initiative-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:24px; }
+  .initiative-item{ border:1px solid var(--border-light); border-radius:10px; padding:18px; background:#fff; }
+  .initiative-item h3{ margin:0 0 8px; font-size:16px; color:var(--green-dark); }
+  .initiative-item p{ margin:0; font-size:13.5px; line-height:1.7; color:#616161; }
+  .quote-box{ margin-top:24px; background:linear-gradient(120deg,var(--green-darker),var(--green-mid)); color:#fff; border-radius:10px; padding:22px 24px; }
+  .quote-box p{ margin:0; font-size:14px; line-height:1.7; color:#e7f0e9; }
+
+  /* ===== Responsive ===== */
+  @media (max-width:900px){
+    .topbar, .navbar, section{ padding-left:18px; padding-right:18px; }
+    .navbar ul{ flex-wrap:wrap; gap:16px; justify-content:center; }
+    .news-grid, .init-grid{ grid-template-columns:1fr; }
+    .careers-grid{ grid-template-columns:1fr; }
+    .newsletter-box{ flex-direction:column; align-items:flex-start; }
+    .hero h2{ font-size:24px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-emblem">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Emblem_of_the_Arab_League.svg/500px-Emblem_of_the_Arab_League.svg.png?_=20240113183340" alt="League of Arab States logo">
+      </div>
+      <div class="brand-text">
+        <div class="ar-line" data-i18n="brand_ar">جامعة الدول العربية</div>
+        <div class="en-line">LEAGUE OF ARAB STATES</div>
+      </div>
+    </div>
+    <div class="top-right">
+      <div class="lang-switch">
+        <button id="btnAr" onclick="setLang('ar')">العربية</button>
+        <span>|</span>
+        <button id="btnEn" onclick="setLang('en')">English</button>
+      </div>
+      <div class="search-box">
+        <input type="text" data-i18n-placeholder="search_ph" placeholder="Search">
+        <button>&#128269;</button>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html" data-i18n="nav_home">HOME</a></li>
+      <li><a href="about.html" data-i18n="nav_about">ABOUT THE LEAGUE</a></li>
+      <li><a href="news.html" data-i18n="nav_news">NEWS &amp; UPDATES</a></li>
+      <li class="active"><a href="initiatives.html" data-i18n="nav_initiatives">INITIATIVES</a></li>
+      <li><a href="achievements.html" data-i18n="nav_achievements">ACHIEVEMENTS</a></li>
+      <li><a href="publications.html" data-i18n="nav_publications">PUBLICATIONS</a>
+      <li><a href="careers.html" data-i18n="nav_careers">CAREERS &amp; INTERNSHIPS</a></li>
+      <li><a href="contact.html" data-i18n="nav_contact">CONTACT</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="page-hero-content">
+    <h1 data-i18n="initiative_hero_title">Initiatives Shaping a More Connected Arab Region</h1>
+    <p data-i18n="initiative_hero_text">The League of Arab States continues to advance practical initiatives that strengthen cooperation, promote sustainable development, and support regional stability across member states.</p>
+  </div>
+</section>
+
+<section>
+  <div class="article-layout">
+    <div class="article-card">
+      <h2 data-i18n="initiative_section_title">From strategy to implementation</h2>
+      <p data-i18n="initiative_p1">The League’s initiatives reflect a long-term commitment to turning regional priorities into concrete action. By combining institutional coordination with targeted programs, the League supports efforts that address development, public welfare, economic resilience, and shared regional challenges.</p>
+      <p data-i18n="initiative_p2">These initiatives are designed to strengthen the capacity of member states while promoting cooperation at a regional level. Whether focused on public engagement, strategic policy dialogue, or sector-specific development, they are rooted in the values of collaboration, inclusion, and measurable impact.</p>
+      <ul class="info-list">
+        <li data-i18n="initiative_list1">Programs are developed to support regional coordination and sustainable progress.</li>
+        <li data-i18n="initiative_list2">Initiatives are built around practical cooperation between institutions, governments, and partners.</li>
+        <li data-i18n="initiative_list3">Implementation is guided by shared goals of stability, development, and long-term resilience.</li>
+      </ul>
+    </div>
+    <div class="side-card">
+      <h3 data-i18n="initiative_side_title">Key priorities</h3>
+      <p data-i18n="initiative_side_p">The League’s current work focuses on areas that have direct relevance to regional prosperity and cooperation.</p>
+      <ul>
+        <li data-i18n="initiative_side_list1">Development and economic cooperation</li>
+        <li data-i18n="initiative_side_list2">Regional dialogue and policy coordination</li>
+        <li data-i18n="initiative_side_list3">Institutional modernization and partnerships</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="initiative-grid">
+    <div class="initiative-item">
+      <h3 data-i18n="initiative_item1_title">Regional Development Cooperation</h3>
+      <p data-i18n="initiative_item1_desc">Supporting joint action on economic growth, infrastructure, and sustainable development across member states.</p>
+    </div>
+    <div class="initiative-item">
+      <h3 data-i18n="initiative_item2_title">Institutional Partnerships</h3>
+      <p data-i18n="initiative_item2_desc">Promoting collaboration with regional and international stakeholders to expand the reach of common programs.</p>
+    </div>
+    <div class="initiative-item">
+      <h3 data-i18n="initiative_item3_title">Public Engagement and Dialogue</h3>
+      <p data-i18n="initiative_item3_desc">Encouraging open communication, public awareness, and informed participation in regional decision-making.</p>
+    </div>
+  </div>
+
+  <div class="quote-box">
+    <p data-i18n="initiative_quote">“The League’s initiatives demonstrate that meaningful progress is achieved when cooperation is guided by shared purpose and practical action.”</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="brand-emblem">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Emblem_of_the_Arab_League.svg/500px-Emblem_of_the_Arab_League.svg.png?_=20240113183340" alt="League of Arab States logo">
+      </div>
+      <div class="brand-text">
+        <div class="ar-line" data-i18n="brand_ar">جامعة الدول العربية</div>
+        <div class="en-line" data-i18n="brand_en">LEAGUE OF ARAB STATES</div>
+      </div>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4 data-i18n="nav_home">HOME</h4>
+        <ul>
+          <li><a href="about.html" data-i18n="nav_about">About the League</a></li>
+          <li><a href="news.html" data-i18n="nav_news">News &amp; Updates</a></li>
+          <li><a href="initiatives.html" data-i18n="nav_initiatives">Initiatives</a></li>
+          <li><a href="achievements.html" data-i18n="nav_achievements">Achievements</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="nav_initiatives">INITIATIVES</h4>
+        <ul>
+          <li><a href="initiatives.html" data-i18n="footer_init1">Initiative Overview</a></li>
+          <li><a href="initiatives.html" data-i18n="footer_init2">Programs</a></li>
+          <li><a href="initiatives.html" data-i18n="footer_init3">Partnerships</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="nav_publications">PUBLICATIONS</h4>
+        <ul>
+          <li><a href="publications.html" data-i18n="footer_pub1">Reports</a></li>
+          <li><a href="publications.html" data-i18n="footer_pub2">Newsletter</a></li>
+          <li><a href="publications.html" data-i18n="footer_pub3">Media</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-social">
+      <div class="social-icons">
+        <span>&#102;</span><span>&#120;</span><span>&#9993;</span>
+      </div>
+      <ul class="footer-contact">
+        <li>&#9742; +012345678910</li>
+        <li>&#9993; info.sect@las.int</li>
+        <li>&#127760; www.site.eg</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom" data-i18n="copyright">Copyright The League of Arab States</div>
+</footer>
+<script>
+const translations = {
+  brand: {en:"جامعة الدول العربية", ar:"جامعة الدول العربية"},
+  brand: {en:"LEAGUE OF ARAB STATES", ar:"جامعة الدول العربية"},
+  search_ph: {en:"Search", ar:"بحث"},
+  nav_home: {en:"HOME", ar:"الرئيسية"},
+  nav_about: {en:"ABOUT THE LEAGUE", ar:"عن الجامعة"},
+  nav_news: {en:"NEWS & UPDATES", ar:"الأخبار والتحديثات"},
+  nav_initiatives: {en:"INITIATIVES", ar:"المبادرات"},
+  nav_achievements: {en:"ACHIEVEMENTS", ar:"الإنجازات"},
+  nav_publications: {en:"PUBLICATIONS", ar:"المنشورات"},
+  nav_careers: {en:"CAREERS & INTERNSHIPS", ar:"الوظائف والتدريب"},
+  nav_contact: {en:"CONTACT", ar:"الاتصال"},
+  initiative_hero_title: {en:"Initiatives Shaping a More Connected Arab Region", ar:"مبادرات تشكل منطقة عربية أكثر ارتباطًا"},
+  initiative_hero_text: {en:"The League of Arab States continues to advance practical initiatives that strengthen cooperation, promote sustainable development, and support regional stability across member states.", ar:"تواصل جامعة الدول العربية推进 مبادرات عملية تعزز التعاون وتدعم التنمية المستدامة والاستقرار الإقليمي في الدول الأعضاء."},
+  initiative_section_title: {en:"From strategy to implementation", ar:"من الاستراتيجية إلى التنفيذ"},
+  initiative_p1: {en:"The League’s initiatives reflect a long-term commitment to turning regional priorities into concrete action. By combining institutional coordination with targeted programs, the League supports efforts that address development, public welfare, economic resilience, and shared regional challenges.", ar:"تعكس مبادرات الجامعة التزامًا طويل الأمد بتحويل الأولويات الإقليمية إلى عمل ملموس. ومن خلال الجمع بين التنسيق المؤسسي والبرامج المستهدفة، تدعم الجامعة الجهود التي تعالج التنمية والرفاه العام والمرونة الاقتصادية والتحديات الإقليمية المشتركة."},
+  initiative_p2: {en:"These initiatives are designed to strengthen the capacity of member states while promoting cooperation at a regional level. Whether focused on public engagement, strategic policy dialogue, or sector-specific development, they are rooted in the values of collaboration, inclusion, and measurable impact.", ar:"صُممت هذه المبادرات لتعزيز قدرة الدول الأعضاء مع تعزيز التعاون على المستوى الإقليمي. وسواء كان التركيز على المشاركة العامة أو الحوار الاستراتيجي أو التنمية القطاعية، فإنها ترتكز على قيم التعاون والشمول والأثر القابل للقياس."},
+  initiative_list1: {en:"Programs are developed to support regional coordination and sustainable progress.", ar:"يتم تطوير البرامج لدعم التنسيق الإقليمي والتقدم المستدام."},
+  initiative_list2: {en:"Initiatives are built around practical cooperation between institutions, governments, and partners.", ar:"تُبنى المبادرات على التعاون العملي بين المؤسسات والحكومات والشركاء."},
+  initiative_list3: {en:"Implementation is guided by shared goals of stability, development, and long-term resilience.", ar:"يسترشد التنفيذ بأهداف مشتركة تتمثل في الاستقرار والتنمية والمرونة على المدى الطويل."},
+  initiative_side_title: {en:"Key priorities", ar:"الأولويات الرئيسية"},
+  initiative_side_p: {en:"The League’s current work focuses on areas that have direct relevance to regional prosperity and cooperation.", ar:"تركز أعمال الجامعة الحالية على مجالات ذات صلة مباشرة بالازدهار والتعاون الإقليميين."},
+  initiative_side_list1: {en:"Development and economic cooperation", ar:"التنمية والتعاون الاقتصادي"},
+  initiative_side_list2: {en:"Regional dialogue and policy coordination", ar:"الحوار الإقليمي وتنسيق السياسات"},
+  initiative_side_list3: {en:"Institutional modernization and partnerships", ar:"التحول المؤسسي والشراكات"},
+  initiative_item1_title: {en:"Regional Development Cooperation", ar:"التعاون التنموي الإقليمي"},
+  initiative_item1_desc: {en:"Supporting joint action on economic growth, infrastructure, and sustainable development across member states.", ar:"دعم العمل المشترك بشأن النمو الاقتصادي والبنية التحتية والتنمية المستدامة في الدول الأعضاء."},
+  initiative_item2_title: {en:"Institutional Partnerships", ar:"الشراكات المؤسسية"},
+  initiative_item2_desc: {en:"Promoting collaboration with regional and international stakeholders to expand the reach of common programs.", ar:"تعزيز التعاون مع أصحاب المصلحة الإقليميين والدوليين لتوسيع نطاق البرامج المشتركة."},
+  initiative_item3_title: {en:"Public Engagement and Dialogue", ar:"المشاركة العامة والحوار"},
+  initiative_item3_desc: {en:"Encouraging open communication, public awareness, and informed participation in regional decision-making.", ar:"تشجيع التواصل المفتوح والوعي العام والمشاركة المستنيرة في صنع القرار الإقليمي."},
+  initiative_quote: {en:"“The League’s initiatives demonstrate that meaningful progress is achieved when cooperation is guided by shared purpose and practical action.”", ar:"“تُظهر مبادرات الجامعة أن التقدم الحقيقي يتحقق عندما يُوجه التعاون بهدف مشترك وإجراء عملي.”"},
+  footer_home_heading: {en:"HOME", ar:"الرئيسية"},
+  footer_initiatives_heading: {en:"INITIATIVES", ar:"المبادرات"},
+  footer_contact_heading: {en:"CONTACT", ar:"اتصل بنا"},
+  footer_home_link: {en:"Home", ar:"الرئيسية"},
+  footer_news_link: {en:"News", ar:"الأخبار"},
+  footer_initiatives_link: {en:"Initiatives", ar:"المبادرات"},
+  footer_overview_link: {en:"Overview", ar:"نظرة عامة"},
+  footer_achievements_link: {en:"Achievements", ar:"الإنجازات"},
+  footer_publications_link: {en:"Publications", ar:"المنشورات"},
+  footer_get_in_touch: {en:"Get in touch", ar:"تواصل معنا"},
+  footer_copyright: {en:"Copyright The League of Arab States", ar:"جميع الحقوق محفوظة لجامعة الدول العربية"}
+};
+function setLang(lang){
+  document.getElementById('htmlRoot').setAttribute('lang', lang);
+  document.getElementById('htmlRoot').setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+  const arBtn = document.getElementById('btnAr');
+  const enBtn = document.getElementById('btnEn');
+  if(arBtn) arBtn.classList.toggle('active', lang === 'ar');
+  if(enBtn) enBtn.classList.toggle('active', lang === 'en');
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if(translations[key]) el.textContent = translations[key][lang];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if(translations[key]) el.setAttribute('placeholder', translations[key][lang]);
+  });
+  localStorage.setItem('las_lang', lang);
+}
+setLang(localStorage.getItem('las_lang') || 'en');
+</script>
+</body>
+</html>
+
+<script>
+  document.getElementById('htmlRoot').setAttribute('dir', document.getElementById('htmlRoot').getAttribute('dir') || 'ltr');
+</script>

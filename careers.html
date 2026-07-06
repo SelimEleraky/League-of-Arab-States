@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>League of Arab States</title>
+<style>
+  :root{
+    --green-dark:#173a2c;
+    --green-darker:#0f2b21;
+    --green-mid:#1f4534;
+    --gold:#d6a94a;
+    --gold-dark:#c69735;
+    --gray-bg:#f4f4f2;
+    --text-dark:#1c1c1c;
+    --text-light:#f5f5f0;
+    --border-light:#e5e5e0;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Segoe UI', Tahoma, Arial, sans-serif;
+    color:var(--text-dark);
+    background:#fff;
+  }
+  html[dir="rtl"] body{ font-family:'Segoe UI', Tahoma, 'Cairo', Arial, sans-serif; }
+  a{ text-decoration:none; color:inherit; }
+  img{ max-width:100%; display:block; }
+  ul{ list-style:none; margin:0; padding:0; }
+  button{ font-family:inherit; cursor:pointer; border:none; }
+
+  /* ===== Header ===== */
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 40px; border-bottom:1px solid var(--border-light);
+  }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .brand-emblem{
+    width:46px; height:46px; border-radius:50%;
+    background: transparent;
+    border:none;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--gold); font-size:20px; flex:none;
+    overflow:hidden;
+  }
+  .brand-emblem img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .brand-text{ line-height:1.15; }
+  .brand-text .ar-line{ font-size:15px; font-weight:600; color:var(--green-dark); }
+  .brand-text .en-line{ font-size:12px; letter-spacing:.5px; font-weight:700; color:var(--green-dark); }
+
+  .top-right{ display:flex; align-items:center; gap:22px; }
+  .lang-switch{ font-size:13px; font-weight:600; color:#444; display:flex; gap:6px; }
+  .lang-switch button{ background:none; color:#666; font-size:13px; font-weight:600; padding:2px; }
+  .lang-switch button.active{ color:var(--green-dark); text-decoration:underline; }
+  .search-box{ display:flex; align-items:center; border:1px solid #ccc; border-radius:4px; overflow:hidden; }
+  .search-box input{ border:none; padding:7px 10px; font-size:13px; outline:none; width:160px; }
+  .search-box button{ background:var(--green-dark); color:#fff; padding:7px 12px; }
+
+  .navbar{
+    display:flex; align-items:center; justify-content:center;
+    background:#fff; border-bottom:1px solid var(--border-light);
+    padding:0 40px;
+  }
+  .navbar ul{ display:flex; gap:34px; }
+  .navbar li{ position:relative; }
+  .navbar a{
+    display:block; padding:14px 0; font-size:13px; font-weight:700;
+    letter-spacing:.4px; color:#333; white-space:nowrap;
+  }
+  .navbar li.active a{ color:var(--green-dark); border-bottom:3px solid var(--gold); }
+  .navbar a:hover{ color:var(--green-dark); }
+  .caret{ font-size:10px; margin-inline-start:4px; }
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative; min-height:320px; display:flex; align-items:center;
+    background:
+      linear-gradient(90deg, rgba(15,30,24,.92) 0%, rgba(15,30,24,.55) 55%, rgba(15,30,24,.25) 100%),
+      url('https://images.unsplash.com/photo-1591474200742-8e512e6f98f8?w=1400&q=80') center/cover;
+    color:#fff; padding:50px 60px;
+  }
+  html[dir="rtl"] .hero{
+    background:
+      linear-gradient(270deg, rgba(15,30,24,.92) 0%, rgba(15,30,24,.55) 55%, rgba(15,30,24,.25) 100%),
+      url('https://images.unsplash.com/photo-1591474200742-8e512e6f98f8?w=1400&q=80') center/cover;
+  }
+  .hero-inner{ max-width:600px; }
+  .hero h1{ font-size:26px; line-height:1.4; margin:0 0 6px; font-weight:600; }
+  .hero h2{ font-size:32px; line-height:1.3; margin:0 0 26px; font-weight:800; letter-spacing:.5px; }
+  .hero-buttons{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{ padding:12px 22px; font-size:13px; font-weight:700; border-radius:3px; letter-spacing:.3px; }
+  .btn-gold{ background:var(--gold); color:var(--green-darker); }
+  .btn-gold:hover{ background:var(--gold-dark); }
+  .btn-outline{ background:transparent; border:1px solid #fff; color:#fff; }
+  .btn-outline:hover{ background:rgba(255,255,255,.12); }
+
+  /* ===== Section shell ===== */
+  section{ padding:46px 40px; }
+  .section-head{
+    display:flex; align-items:center; justify-content:space-between; margin-bottom:24px;
+  }
+  .section-head h2{ font-size:20px; letter-spacing:.5px; font-weight:800; color:var(--green-dark); margin:0; }
+  .arrow-controls{ display:flex; gap:8px; }
+  .arrow-controls button{
+    width:32px; height:32px; border-radius:50%; border:1px solid #ccc; background:#fff;
+    display:flex; align-items:center; justify-content:center; color:#555;
+  }
+  .icon-heading{ display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center; margin-bottom:26px; }
+  .icon-circle{ font-size:26px; color:var(--green-dark); }
+
+  /* ===== News cards ===== */
+  .news-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .news-card{
+    background:#fff;
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow:0 2px 10px rgba(0,0,0,.06);
+    aspect-ratio:1 / 1;
+    display:flex;
+    flex-direction:column;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .news-card:hover{
+    transform:scale(1.03);
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+  }
+  .news-card img{ width:100%; height:58%; object-fit:cover; border-radius:0; flex-shrink:0; }
+  .news-body{ padding:14px 14px 16px; display:flex; flex-direction:column; justify-content:center; flex:1; }
+  .news-date{ font-size:11px; color:#888; margin-bottom:6px; }
+  .news-title{ font-size:15px; font-weight:700; margin:0 0 8px; color:var(--text-dark); }
+  .news-desc{ font-size:12.5px; color:#666; line-height:1.6; margin:0 0 8px; }
+  .news-time{ font-size:11px; color:#999; }
+
+  /* ===== Initiatives grid ===== */
+  .bg-gray{ background:var(--gray-bg); }
+  .init-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .init-card img{ width:100%; height:150px; object-fit:cover; border-radius:4px; }
+  .init-body{ padding:12px 2px; }
+  .init-title{ font-size:14px; font-weight:700; margin:0 0 6px; }
+  .init-desc{ font-size:12px; color:#666; line-height:1.5; margin:0; }
+
+  /* ===== Programs carousel ===== */
+  .programs-row{ display:flex; gap:20px; overflow-x:auto; padding-bottom:6px; }
+  .program-card{ flex:0 0 220px; border:1px solid var(--border-light); border-radius:4px; overflow:hidden; }
+  .program-card img{ width:100%; height:110px; object-fit:cover; }
+  .program-body{ padding:12px; }
+  .program-title{ font-size:13px; font-weight:700; margin:0 0 4px; }
+  .program-sub{ font-size:11px; color:#888; margin:0; }
+  .programs-wrap{ display:flex; align-items:center; gap:14px; }
+  .programs-wrap .arrow-controls button{ flex:none; }
+
+  /* ===== Newsletter ===== */
+  .newsletter-box{
+    background:linear-gradient(120deg,var(--green-darker),var(--green-mid));
+    color:#fff; border-radius:6px; padding:34px 40px;
+    display:flex; align-items:center; justify-content:space-between; gap:30px; flex-wrap:wrap;
+  }
+  .newsletter-left h3{ font-size:20px; line-height:1.4; margin:0; font-weight:800; max-width:280px; }
+  .newsletter-right{ text-align:start; }
+  .newsletter-label{ font-size:12px; letter-spacing:.5px; color:#cfe0d6; margin-bottom:10px; font-weight:600; }
+  .newsletter-form{ display:flex; gap:10px; }
+  .newsletter-form input{
+    padding:11px 14px; border-radius:3px; border:none; font-size:13px; width:220px; outline:none;
+  }
+  .newsletter-links{ margin-top:10px; font-size:11.5px; color:#cfe0d6; }
+  .newsletter-links a{ text-decoration:underline; color:#e9d9a8; }
+
+  /* ===== Careers ===== */
+  .careers-grid{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  .career-card{ border-radius:6px; padding:24px 26px; color:#fff; }
+  .career-card.dark{ background:var(--green-darker); }
+  .career-card.mid{ background:var(--green-mid); }
+  .career-date{ font-size:11px; color:#cfe0d6; margin-bottom:8px; }
+  .career-title{ font-size:16px; font-weight:800; margin:0 0 10px; line-height:1.4; }
+  .career-desc{ font-size:12.5px; line-height:1.7; color:#dcebe2; margin:0 0 12px; }
+  .career-openings{ font-size:12.5px; margin-bottom:14px; }
+  .career-openings p{ margin:0 0 6px; font-weight:700; }
+  .career-openings ul{ padding-inline-start:18px; list-style:disc; color:#dcebe2; }
+  .career-openings li{ margin-bottom:2px; }
+
+  /* ===== Footer ===== */
+  /* ===== Footer ===== */
+footer{
+  background:var(--green-darker);
+  color:#cfe0d6;
+  padding:40px 40px 0;
+}
+
+.footer-top{
+  display:flex;
+  gap:60px;
+  flex-wrap:wrap;
+  padding-bottom:30px;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+
+.footer-brand{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  flex:1;
+  min-width:220px;
+  padding-left:20px;
+}
+
+.footer-brand .brand-emblem{
+  width:110px;
+  height:110px;
+  transform:translateX(10px);
+}
+
+.footer-brand .brand-text .ar-line{
+    color:#fff;
+    font-size:22px;
+    font-weight:700;
+}
+
+.footer-brand .brand-text .en-line{
+    color:#fff;
+    font-size:16px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.footer-cols{
+  display:flex;
+  gap:50px;
+  flex-wrap:wrap;
+  flex:2;
+}
+
+.footer-col h4{
+  font-size:12.5px;
+  letter-spacing:.5px;
+  color:var(--gold);
+  margin:0 0 14px;
+  font-weight:800;
+}
+
+.footer-col ul li{
+  margin-bottom:10px;
+  font-size:12.5px;
+}
+
+.footer-col ul li a:hover{
+  color:#fff;
+}
+
+.footer-social{
+  flex:1;
+  min-width:200px;
+}
+
+.social-icons{
+  display:flex;
+  gap:10px;
+  margin-bottom:16px;
+}
+
+.social-icons span{
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  background:rgba(255,255,255,.1);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:13px;
+}
+
+.footer-contact li{
+  font-size:12px;
+  margin-bottom:8px;
+}
+
+.footer-bottom{
+  text-align:center;
+  font-size:11.5px;
+  padding:16px 0;
+  color:#9db3a6;
+}
+
+  /* ===== Careers page ===== */
+  .page-hero{
+    position:relative; min-height:300px; display:flex; align-items:center;
+    background:linear-gradient(90deg, rgba(15,30,24,.92) 0%, rgba(15,30,24,.72) 100%),
+      url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1400&q=80') center/cover;
+    color:#fff; padding:50px 40px;
+  }
+  .page-hero-content{ max-width:760px; }
+  .page-hero h1{ font-size:32px; line-height:1.25; margin:0 0 12px; font-weight:800; }
+  .page-hero p{ font-size:15px; line-height:1.8; color:#e9efe9; margin:0; }
+  .article-layout{ display:grid; grid-template-columns:2fr 1fr; gap:24px; align-items:start; }
+  .article-card{
+    background:#fff; border:1px solid var(--border-light); border-radius:10px; padding:24px;
+    box-shadow:0 4px 16px rgba(0,0,0,.04);
+  }
+  .article-card h2{ margin:0 0 12px; font-size:20px; color:var(--green-dark); }
+  .article-card p{ margin:0 0 12px; font-size:14.5px; line-height:1.8; color:#555; }
+  .info-list{ padding-inline-start:18px; margin:8px 0 0; color:#555; }
+  .info-list li{ margin-bottom:8px; line-height:1.7; }
+  .side-card{ background:var(--gray-bg); border-radius:10px; padding:20px; }
+  .side-card h3{ margin:0 0 10px; font-size:16px; color:var(--green-dark); }
+  .side-card p{ margin:0 0 10px; font-size:13.5px; line-height:1.7; color:#616161; }
+  .side-card ul{ display:grid; gap:8px; }
+  .side-card li{ font-size:13.5px; color:#555; line-height:1.6; }
+  .cta-box{ margin-top:24px; background:linear-gradient(120deg,var(--green-darker),var(--green-mid)); color:#fff; border-radius:10px; padding:22px 24px; }
+  .cta-box h3{ margin:0 0 8px; font-size:18px; }
+  .cta-box p{ margin:0; font-size:14px; line-height:1.7; color:#e7f0e9; }
+
+  /* ===== Responsive ===== */
+  @media (max-width:900px){
+    .topbar, .navbar, section{ padding-left:18px; padding-right:18px; }
+    .navbar ul{ flex-wrap:wrap; gap:16px; justify-content:center; }
+    .news-grid, .init-grid{ grid-template-columns:1fr; }
+    .careers-grid{ grid-template-columns:1fr; }
+    .newsletter-box{ flex-direction:column; align-items:flex-start; }
+    .hero h2{ font-size:24px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-emblem">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Emblem_of_the_Arab_League.svg/500px-Emblem_of_the_Arab_League.svg.png?_=20240113183340" alt="League of Arab States logo">
+      </div>
+      <div class="brand-text">
+        <div class="ar-line" data-i18n="brand_ar">جامعة الدول العربية</div>
+        <div class="en-line">LEAGUE OF ARAB STATES</div>
+      </div>
+    </div>
+    <div class="top-right">
+      <div class="lang-switch">
+        <button id="btnAr" onclick="setLang('ar')">العربية</button>
+        <span>|</span>
+        <button id="btnEn" onclick="setLang('en')">English</button>
+      </div>
+      <div class="search-box">
+        <input type="text" data-i18n-placeholder="search_ph" placeholder="Search">
+        <button>&#128269;</button>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html" data-i18n="nav_home">HOME</a></li>
+      <li><a href="about.html" data-i18n="nav_about">ABOUT THE LEAGUE</a></li>
+      <li><a href="news.html" data-i18n="nav_news">NEWS &amp; UPDATES</a></li>
+      <li><a href="initiatives.html" data-i18n="nav_initiatives">INITIATIVES</a></li>
+      <li><a href="achievements.html" data-i18n="nav_achievements">ACHIEVEMENTS</a></li>
+      <li><a href="publications.html" data-i18n="nav_publications">PUBLICATIONS</a>
+      <li class="active"><a href="careers.html" data-i18n="nav_careers">CAREERS &amp; INTERNSHIPS</a></li>
+      <li><a href="contact.html" data-i18n="nav_contact">CONTACT</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="page-hero-content">
+    <h1 data-i18n="career_hero_title">Careers and Internships at the League of Arab States</h1>
+    <p data-i18n="career_hero_text">The League offers meaningful opportunities for professionals and emerging talent who wish to contribute to regional cooperation, institutional development, and public service across the Arab world.</p>
+  </div>
+</section>
+
+<section>
+  <div class="article-layout">
+    <div class="article-card">
+      <h2 data-i18n="career_section_title">Building careers around regional impact</h2>
+      <p data-i18n="career_p1">At the League of Arab States, careers are shaped by purpose, collaboration, and a commitment to advancing shared regional priorities. Our work spans diplomacy, policy analysis, administration, communications, development, and technical cooperation, offering professionals the chance to contribute to initiatives that influence the future of the Arab world.</p>
+      <p data-i18n="career_p2">We value individuals who bring strong analytical ability, professionalism, and a genuine interest in public service. Whether working in a specialized technical role or supporting institutional operations, employees and interns help strengthen the League’s role as a platform for dialogue, coordination, and action.</p>
+      <ul class="info-list">
+        <li data-i18n="career_list1">Opportunities are available across policy, administration, research, communications, and program support.</li>
+        <li data-i18n="career_list2">We encourage applications from candidates with relevant academic credentials, professional experience, and a commitment to regional cooperation.</li>
+        <li data-i18n="career_list3">Internship programs provide practical exposure to the work of international institutions and the day-to-day operations of a major regional organization.</li>
+      </ul>
+    </div>
+    <div class="side-card">
+      <h3 data-i18n="career_side_title">What we look for</h3>
+      <p data-i18n="career_side_p">Applicants are encouraged to demonstrate initiative, teamwork, and a strong understanding of the League’s mission and regional role.</p>
+      <ul>
+        <li data-i18n="career_side_list1">Relevant academic background</li>
+        <li data-i18n="career_side_list2">Professional or research experience</li>
+        <li data-i18n="career_side_list3">Strong communication skills</li>
+        <li data-i18n="career_side_list4">Commitment to public service</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cta-box">
+    <h3 data-i18n="career_cta_title">Join a mission that matters</h3>
+    <p data-i18n="career_cta_text">Whether you are an experienced professional or a young graduate seeking your first step into international public service, the League offers a platform to contribute meaningfully to regional cooperation and long-term development.</p>
+    <p data-i18n="career_cta_apply">
+    When the internship application window opens, applicants are invited to submit their CV to <strong>careers@lasapplication.com</strong> with the subject line: <strong>"[Desired Position] – [Full Name]"</strong>.
+  </p>
+</div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="brand-emblem">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Emblem_of_the_Arab_League.svg/500px-Emblem_of_the_Arab_League.svg.png?_=20240113183340" alt="League of Arab States logo">
+      </div>
+      <div class="brand-text">
+        <div class="ar-line" data-i18n="brand_ar">جامعة الدول العربية</div>
+        <div class="en-line" data-i18n="brand_en">LEAGUE OF ARAB STATES</div>
+      </div>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4 data-i18n="nav_home">HOME</h4>
+        <ul>
+          <li><a href="about.html" data-i18n="nav_about">About the League</a></li>
+          <li><a href="news.html" data-i18n="nav_news">News &amp; Updates</a></li>
+          <li><a href="initiatives.html" data-i18n="nav_initiatives">Initiatives</a></li>
+          <li><a href="achievements.html" data-i18n="nav_achievements">Achievements</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="nav_initiatives">INITIATIVES</h4>
+        <ul>
+          <li><a href="initiatives.html" data-i18n="footer_init1">Initiative Overview</a></li>
+          <li><a href="initiatives.html" data-i18n="footer_init2">Programs</a></li>
+          <li><a href="initiatives.html" data-i18n="footer_init3">Partnerships</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="nav_publications">PUBLICATIONS</h4>
+        <ul>
+          <li><a href="publications.html" data-i18n="footer_pub1">Reports</a></li>
+          <li><a href="publications.html" data-i18n="footer_pub2">Newsletter</a></li>
+          <li><a href="publications.html" data-i18n="footer_pub3">Media</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-social">
+      <div class="social-icons">
+        <span>&#102;</span><span>&#120;</span><span>&#9993;</span>
+      </div>
+      <ul class="footer-contact">
+        <li>&#9742; +012345678910</li>
+        <li>&#9993; info.sect@las.int</li>
+        <li>&#127760; www.site.eg</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom" data-i18n="copyright">Copyright The League of Arab States</div>
+</footer>
+<script>
+const translations = {
+  brand_ar: {en:"جامعة الدول العربية", ar:"جامعة الدول العربية"},
+  brand_en: {en:"LEAGUE OF ARAB STATES", ar:"جامعة الدول العربية"},
+  search_ph: {en:"Search", ar:"بحث"},
+  career_cta_apply: {
+    en:"When the internship application window opens, applicants are invited to submit their CV to careers@lasapplication.com with the subject line: \"[Desired Position] – [Full Name]\".",
+    ar:"عند فتح باب التقديم للتدريب، يُرجى إرسال السيرة الذاتية إلى careers@lasapplication.com مع كتابة عنوان الرسالة بالشكل التالي: \"[المنصب المطلوب] – [الاسم الكامل]\"."
+  },
+  nav_home: {en:"HOME", ar:"الرئيسية"},
+  nav_about: {en:"ABOUT THE LEAGUE", ar:"عن الجامعة"},
+  nav_news: {en:"NEWS & UPDATES", ar:"الأخبار والتحديثات"},
+  nav_initiatives: {en:"INITIATIVES", ar:"المبادرات"},
+  nav_achievements: {en:"ACHIEVEMENTS", ar:"الإنجازات"},
+  nav_publications: {en:"PUBLICATIONS", ar:"المنشورات"},
+  nav_careers: {en:"CAREERS & INTERNSHIPS", ar:"الوظائف والتدريب"},
+  nav_contact: {en:"CONTACT", ar:"الاتصال"},
+  career_hero_title: {en:"Careers and Internships at the League of Arab States", ar:"الوظائف والتدريب في جامعة الدول العربية"},
+  career_hero_text: {en:"The League offers meaningful opportunities for professionals and emerging talent who wish to contribute to regional cooperation, institutional development, and public service across the Arab world.", ar:"تقدم الجامعة فرصًا ذات معنى للمهنيين والموهوبين الجدد الذين يرغبون في المساهمة في التعاون الإقليمي والتنمية المؤسسية والخدمة العامة عبر العالم العربي."},
+  career_section_title: {en:"Building careers around regional impact", ar:"بناء مسارات مهنية حول الأثر الإقليمي"},
+  career_p1: {en:"At the League of Arab States, careers are shaped by purpose, collaboration, and a commitment to advancing shared regional priorities. Our work spans diplomacy, policy analysis, administration, communications, development, and technical cooperation, offering professionals the chance to contribute to initiatives that influence the future of the Arab world.", ar:"في جامعة الدول العربية، تُشكّل المسارات المهنية من خلال الغاية والتعاون والالتزام بتعزيز الأولويات الإقليمية المشتركة. وتمتد أعمالنا عبر الدبلوماسية وتحليل السياسات والإدارة والاتصالات والتنمية والتعاون التقني، مما يتيح للمهنيين فرصة المساهمة في مبادرات تؤثر في مستقبل العالم العربي."},
+  career_p2: {en:"We value individuals who bring strong analytical ability, professionalism, and a genuine interest in public service. Whether working in a specialized technical role or supporting institutional operations, employees and interns help strengthen the League’s role as a platform for dialogue, coordination, and action.", ar:"نقدر الأفراد الذين يجلبون قدرة تحليلية قوية ومهنية واهتمامًا حقيقيًا بالخدمة العامة. وسواء كانوا يعملون في دور فني متخصص أو يدعمون العمليات المؤسسية، فإن الموظفين والمتدربين يساعدون على تعزيز دور الجامعة كمنصة للحوار والتنسيق والعمل."},
+  career_list1: {en:"Opportunities are available across policy, administration, research, communications, and program support.", ar:"تتاحة الفرص عبر المجالات السياسية والإدارية والبحثية والاتصالية ودعم البرامج."},
+  career_list2: {en:"We encourage applications from candidates with relevant academic credentials, professional experience, and a commitment to regional cooperation.", ar:"نشجع المتقدمين الحاصلين على مؤهلات أكاديمية مناسبة وخبرة مهنية والتزام بالتعاون الإقليمي."},
+  career_list3: {en:"Internship programs provide practical exposure to the work of international institutions and the day-to-day operations of a major regional organization.", ar:"توفر برامج التدريب خبرة عملية في عمل المؤسسات الدولية والعمليات اليومية لمنظمة إقليمية كبرى."},
+  career_side_title: {en:"What we look for", ar:"ما الذي نبحث عنه"},
+  career_side_p: {en:"Applicants are encouraged to demonstrate initiative, teamwork, and a strong understanding of the League’s mission and regional role.", ar:"يُشجّع المتقدمون على إظهار المبادرة والعمل الجماعي والفهم القوي لرسالة الجامعة ودورها الإقليمي."},
+  career_side_list1: {en:"Relevant academic background", ar:"خلفية أكاديمية ذات صلة"},
+  career_side_list2: {en:"Professional or research experience", ar:"خبرة مهنية أو بحثية"},
+  career_side_list3: {en:"Strong communication skills", ar:"مهارات اتصال قوية"},
+  career_side_list4: {en:"Commitment to public service", ar:"التزام بالخدمة العامة"},
+  career_cta_title: {en:"Join a mission that matters", ar:"انضم إلى مهمة ذات معنى"},
+  career_cta_text: {en:"Whether you are an experienced professional or a young graduate seeking your first step into international public service, the League offers a platform to contribute meaningfully to regional cooperation and long-term development.", ar:"سواء كنت مهنيًا ذا خبرة أو خريجًا شابًا يبحث عن أول خطوة في الخدمة العامة الدولية، فإن الجامعة توفر منصة للمساهمة بفاعلية في التعاون الإقليمي والتنمية على المدى الطويل."},
+  footer_home_heading: {en:"HOME", ar:"الرئيسية"},
+  footer_careers_heading: {en:"CAREERS", ar:"الوظائف"},
+  footer_contact_heading: {en:"CONTACT", ar:"اتصل بنا"},
+  footer_home_link: {en:"Home", ar:"الرئيسية"},
+  footer_news_link: {en:"News", ar:"الأخبار"},
+  footer_initiatives_link: {en:"Initiatives", ar:"المبادرات"},
+  footer_overview_link: {en:"Overview", ar:"نظرة عامة"},
+  footer_publications_link: {en:"Publications", ar:"المنشورات"},
+  footer_contact_link: {en:"Contact", ar:"اتصل بنا"},
+  footer_get_in_touch: {en:"Get in touch", ar:"تواصل معنا"},
+  footer_copyright: {en:"Copyright The League of Arab States", ar:"جميع الحقوق محفوظة لجامعة الدول العربية"}
+};
+function setLang(lang){
+  document.getElementById('htmlRoot').setAttribute('lang', lang);
+  document.getElementById('htmlRoot').setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+  const arBtn = document.getElementById('btnAr');
+  const enBtn = document.getElementById('btnEn');
+  if(arBtn) arBtn.classList.toggle('active', lang === 'ar');
+  if(enBtn) enBtn.classList.toggle('active', lang === 'en');
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if(translations[key]) el.textContent = translations[key][lang];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if(translations[key]) el.setAttribute('placeholder', translations[key][lang]);
+  });
+  localStorage.setItem('las_lang', lang);
+}
+setLang(localStorage.getItem('las_lang') || 'en');
+</script>
+</body>
+</html>
+
+<script>
+  document.getElementById('htmlRoot').setAttribute('dir', document.getElementById('htmlRoot').getAttribute('dir') || 'ltr');
+</script>
