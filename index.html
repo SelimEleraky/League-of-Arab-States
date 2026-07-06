@@ -83,7 +83,7 @@
   html[dir="rtl"] .hero{
     background:
       linear-gradient(270deg, rgba(15,30,24,.92) 0%, rgba(15,30,24,.55) 55%, rgba(15,30,24,.25) 100%),
-      url('https://images.unsplash.com/photo-1591474200742-8e512e6f98f8?w=1400&q=80') center/cover;
+      url('https://www.aljazeera.com/wp-content/uploads/2019/04/c768c3b940614e5090fc51865f62704e_18.jpeg?resize=770%2C513&quality=80') center/cover;
   }
   .hero-inner{ max-width:600px; }
   .hero h1{ font-size:26px; line-height:1.4; margin:0 0 6px; font-weight:600; }
@@ -298,15 +298,64 @@ footer{
   color:#9db3a6;
 }
 
-  /* ===== Responsive ===== */
-  @media (max-width:900px){
-    .topbar, .navbar, section{ padding-left:18px; padding-right:18px; }
-    .navbar ul{ flex-wrap:wrap; gap:16px; justify-content:center; }
-    .news-grid, .init-grid{ grid-template-columns:1fr; }
-    .careers-grid{ grid-template-columns:1fr; }
-    .newsletter-box{ flex-direction:column; align-items:flex-start; }
-    .hero h2{ font-size:24px; }
+@media (max-width:900px){
+
+  .topbar,
+  .navbar,
+  section{
+    padding-left:18px;
+    padding-right:18px;
   }
+
+  .navbar ul{
+    flex-wrap:wrap;
+    gap:16px;
+    justify-content:center;
+  }
+
+  .news-grid,
+  .init-grid,
+  .careers-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero h2{
+    font-size:24px;
+  }
+
+  .newsletter-box{
+    flex-direction:column;
+    align-items:flex-start;
+    padding:24px 20px;
+  }
+
+  .newsletter-left,
+  .newsletter-right{
+    width:100%;
+  }
+
+  .newsletter-left h3{
+    max-width:100%;
+    font-size:18px;
+  }
+
+  .newsletter-form{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+  }
+
+  .newsletter-form input,
+  .newsletter-form button{
+    width:100%;
+  }
+
+  .newsletter-links{
+    word-break:break-word;
+  }
+
+}
+  
 </style>
 </head>
 <body>
