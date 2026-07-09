@@ -334,7 +334,209 @@ footer{
     object-fit:cover;
     object-position:center 20%;
 }
+.flags-slider{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:30px;
+    margin:50px 0;
+    direction:ltr;
+}
 
+.flags-track{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:500px;
+    height:180px;
+    position:relative;
+    direction:ltr;
+}
+
+.flag{
+    position:absolute;
+    width:95px;
+    height:65px;
+    object-fit:cover;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.5s ease;
+    box-shadow:0 8px 20px rgba(0,0,0,.2);
+}
+
+/* Previous */
+
+.flag.prev{
+
+    transform:translateX(-140px) scale(.78);
+
+    opacity:.55;
+
+    z-index:1;
+
+    filter:brightness(.75);
+}
+
+/* Current */
+
+.flag.active{
+
+    transform:translateX(0) scale(1.3);
+
+    z-index:3;
+
+    opacity:1;
+
+    border:3px solid #d6a94a;
+
+    box-shadow:
+    0 12px 35px rgba(0,0,0,.3),
+    0 0 25px rgba(214,169,74,.45);
+}
+
+/* Next */
+
+.flag.next{
+
+    transform:translateX(140px) scale(.78);
+
+    opacity:.55;
+
+    z-index:1;
+
+    filter:brightness(.75);
+}
+.prev-flag,
+.next-flag{
+    width:56px;
+    height:56px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#173a2c;
+    color:#fff;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:30px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    flex-shrink:0;
+
+    transition:
+        background .25s ease,
+        transform .25s ease,
+        box-shadow .25s ease;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.18);
+}
+
+.prev-flag:hover,
+.next-flag:hover{
+    background:#1f4534;
+    transform:scale(1.08);
+    box-shadow:0 10px 24px rgba(0,0,0,.22);
+}
+
+.prev-flag:active,
+.next-flag:active{
+    transform:scale(.95);
+}
+.icon-heading{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.section-title .en{
+    font-size:36px;
+    font-weight:800;
+    color:#173a2c;
+    letter-spacing:.6px;
+    margin-top:10px;
+}
+
+.subtitle{
+    color:#666;
+    margin-top:12px;
+    font-size:16px;
+}
+.country-info{
+
+    background:#fff;
+
+    margin-top:40px;
+
+    border-radius:18px;
+
+    padding:40px 50px;
+
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+    text-align: center;
+}
+
+.country-title{
+
+    text-align:center;
+
+    color:#173a2c;
+
+    font-size:42px;
+
+    font-weight:800;
+    margin-top: -100px;
+    margin-bottom:40px;
+}
+
+.country-section{
+
+    margin-bottom:35px;
+}
+
+.country-section h3{
+
+    color:#173a2c;
+
+    font-size:26px;
+
+    margin-bottom:12px;
+}
+
+.country-section p{
+
+    font-size:18px;
+
+    color:#555;
+
+    line-height:1.8;
+}
+
+.country-section ul{
+
+    padding-left:28px;
+
+    margin:0;
+}
+
+.country-section li{
+
+    margin-bottom:14px;
+    margin-right:30px;
+
+    font-size:18px;
+
+    color:#555;
+
+    line-height:1.8;
+    text-align: center;
+}
 @media (max-width:900px){
 
   .topbar,
@@ -390,6 +592,98 @@ footer{
   .newsletter-links{
     word-break:break-word;
   }
+
+}
+/*=========================
+        Partners
+=========================*/
+
+.partners{
+
+    padding:80px 40px;
+
+    background:#f7f8f5;
+}
+
+.partners-grid{
+    direction:ltr;
+    display:grid;
+
+    grid-template-columns:repeat(3,minmax(300px,1fr));
+
+    gap:30px;
+
+    margin-top:45px;
+}
+
+.partner-card{
+    direction:inherit;
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:35px 30px;
+
+    text-align:center;
+
+    box-shadow:0 8px 24px rgba(0,0,0,.08);
+
+    border:2px solid transparent;
+}
+
+.partner-card img{
+
+    display:block;
+
+    width:50%;
+    height:50%;
+
+    object-fit:contain;
+
+    margin:0 auto 25px auto;
+}
+
+.partner-card h3{
+
+    color:#173a2c;
+
+    font-size:24px;
+
+    margin-bottom:15px;
+}
+
+.partner-card p{
+
+    color:#555;
+
+    line-height:1.8;
+
+    font-size:16px;
+}
+
+@media(max-width:768px){
+
+.partners{
+
+    padding:60px 20px;
+}
+
+.partner-card{
+
+    padding:30px 22px;
+}
+
+.partner-card img{
+
+    width:75px;
+
+    height:75px;
+}
+
+.partner-card h3{
+
+    font-size:22px;
+}
 
 }
   
@@ -480,7 +774,38 @@ footer{
     </div>
   </div>
 </section>
+<div class="icon-heading">
 
+    <div class="section-title">
+        <div class="en" data-i18n="memberStates">MEMBER STATES</div>
+    </div>
+
+    <p class="subtitle" data-i18n="memberStatesSubtitle">
+        Explore the 22 Member States of the League of Arab States
+    </p>
+</div>
+
+    <div class="flags-slider">
+
+        <button class="prev-flag">
+    <i class="fa-solid fa-chevron-left"></i>
+</button>
+
+        <div class="flags-track">
+            <!-- Flags are generated automatically by JavaScript -->
+        </div>
+
+        <button class="next-flag">
+    <i class="fa-solid fa-chevron-right"></i>
+</button>
+
+    </div>
+
+    <div class="country-info">
+        <!-- Selected country's information appears here -->
+    </div>
+
+</section>
 <section class="bg-gray">
   <div class="icon-heading">
     <div class="section-icon">
@@ -559,45 +884,6 @@ footer{
 </div>
   </div>
 </section>
-
-<!-- <section>
-  <div class="programs-wrap">
-    <div class="programs-row" style="flex:1">
-      <div class="program-card">
-        <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&q=80" alt="SDG">
-        <div class="program-body">
-          <h4 class="program-title" data-i18n="prog1_title">Sustainable Development Goals</h4>
-          <p class="program-sub" data-i18n="prog1_sub">Regional development projects</p>
-        </div>
-      </div>
-      <div class="program-card">
-        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&q=80" alt="Economic Integration">
-        <div class="program-body">
-          <h4 class="program-title" data-i18n="prog2_title">Economic Integration Program</h4>
-          <p class="program-sub" data-i18n="prog2_sub">Cross-border economic projects</p>
-        </div>
-      </div>
-      <div class="program-card">
-        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400&q=80" alt="Sustainable Investment">
-        <div class="program-body">
-          <h4 class="program-title" data-i18n="prog3_title">Sustainable Investment Program</h4>
-          <p class="program-sub" data-i18n="prog3_sub">Sustainable financing projects</p>
-        </div>
-      </div>
-      <div class="program-card">
-        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&q=80" alt="Youth Empowerment">
-        <div class="program-body">
-          <h4 class="program-title" data-i18n="prog4_title">Youth Empowerment Program</h4>
-          <p class="program-sub" data-i18n="prog4_sub">Youth development projects</p>
-        </div>
-      </div>
-    </div>
-    <div class="arrow-controls">
-      <button>&#8250;</button>
-    </div>
-  </div>
-</section> -->
-
 <section class="bg-gray">
   <div class="icon-heading">
     <i class="fa-regular fa-newspaper" style="font-size: 34px;"></i>
@@ -647,7 +933,81 @@ footer{
     </div>
   </div>
 </section>
+<section class="partners">
 
+    <div class="icon-heading">
+
+        <div class="section-title">
+            <div class="en" data-i18n="partners">OUR PARTNERS</div>
+        </div>
+
+        <p class="subtitle" data-i18n="partnersSubtitle">
+            Strengthening international cooperation through strategic partnerships with global and regional organizations.
+        </p>
+
+    </div>
+
+    <div class="partners-grid">
+
+    <div class="partner-card">
+        <img src="https://images.seeklogo.com/logo-png/24/1/united-nations-logo-png_seeklogo-247981.png" alt="United Nations">
+        <h3 data-i18n="un">United Nations</h3>
+        <p data-i18n="unDesc">
+            Strategic cooperation on peacebuilding, humanitarian coordination,
+            conflict resolution, and sustainable development.
+        </p>
+    </div>
+
+    <div class="partner-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBdAzl7zdj6HHV4AF6ZwZVj6Yb7I8fl_d2DYJz0vzA0R8h4gqw4k_lkYH0&s=10" alt="UNESCO">
+        <h3 data-i18n="unesco">UNESCO</h3>
+        <p data-i18n="unescoDesc">
+            Joint initiatives supporting education, scientific cooperation,
+            and preservation of Arab cultural heritage.
+        </p>
+    </div>
+
+    <div class="partner-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/United_Nations_Relief_and_Works_Agency_for_Palestine_Refugees_in_the_Near_East_Logo.svg/500px-United_Nations_Relief_and_Works_Agency_for_Palestine_Refugees_in_the_Near_East_Logo.svg.png" alt="UNRWA">
+        <h3 data-i18n="unrwa">UNRWA</h3>
+        <p data-i18n="unrwaDesc">
+            Partnership supporting Palestinian refugees through education,
+            healthcare, and humanitarian assistance.
+        </p>
+    </div>
+
+    <div class="partner-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuItDjqlHcBSamRl2akgYkQVMFYf37mPEi5peNHulPBw&s=10" alt="African Union">
+        <h3 data-i18n="au">African Union</h3>
+        <p data-i18n="auDesc">
+            Collaboration on regional integration, security,
+            infrastructure, and economic development.
+        </p>
+    </div>
+
+    <div class="partner-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/960px-Flag_of_Europe.svg.png" alt="European Union">
+        <h3 data-i18n="eu">European Union</h3>
+        <p data-i18n="euDesc">
+            Cooperation through Euro-Arab dialogue in trade,
+            migration, climate action, and regional stability.
+        </p>
+    </div>
+
+    <div class="partner-card">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/49/Seal_of_ASEAN.svg/1280px-Seal_of_ASEAN.svg.png" alt="ASEAN">
+        <h3 data-i18n="asean">ASEAN</h3>
+        <p data-i18n="aseanDesc">
+            Partnership promoting trade, investment,
+            economic diversification, and regional cooperation.
+        </p>
+    </div>
+
+</div>
+
+    </div>
+
+</section>
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
@@ -785,8 +1145,805 @@ const translations = {
   footer_pub1: {en:"Reports", ar:"التقارير"},
   footer_pub2: {en:"Newsletter", ar:"النشرة الإخبارية"},
   footer_pub3: {en:"Media", ar:"الإعلام"},
-  copyright: {en:"Copyright The League of Arab States", ar:"جميع الحقوق محفوظة لجامعة الدول العربية"}
+  copyright: {en:"Copyright The League of Arab States", ar:"جميع الحقوق محفوظة لجامعة الدول العربية"},
+  memberStates:{en:"MEMBER STATES", ar:"الدول الأعضاء"},
+  memberStatesSubtitle:{en:"Explore the 22 Member States of the League of Arab States", ar:"استكشف الدول الأعضاء الاثنتين والعشرين في جامعة الدول العربية"},
+  joined: {en:"Joined", ar:"تاريخ الانضمام"},
+  contributions: {en:"Major Contributions", ar:"أبرز المساهمات"},
+  partners: {en:"OUR PARTNERS", ar:"الشركاء"},
+  partnersSubtitle: {en:"Strengthening international cooperation through strategic partnerships with global and regional organizations.", ar:"تعزيز التعاون الدولي من خلال شراكات استراتيجية مع المنظمات الإقليمية والدولية."},
+  unDesc:{en:"Strategic cooperation on peacebuilding, humanitarian coordination, conflict resolution, and sustainable development.", ar:"تعاون استراتيجي في بناء السلام، والتنسيق الإنساني، وتسوية النزاعات، وتحقيق أهداف التنمية المستدامة."},
+  unescoDesc: {en:"Joint initiatives supporting education, scientific cooperation, and preservation of Arab cultural heritage.", ar:"مبادرات مشتركة لدعم التعليم، والتعاون العلمي، والحفاظ على التراث الثقافي العربي."},
+  unrwaDesc: {en:"Partnership supporting Palestinian refugees through education, healthcare, and humanitarian assistance.", ar:"شراكة لدعم اللاجئين الفلسطينيين من خلال التعليم، والرعاية الصحية، والمساعدات الإنسانية."},
+  auDesc: {en:"Collaboration on regional integration, security, infrastructure, and economic development.", ar:"تعاون في مجالات التكامل الإقليمي، والأمن، والبنية التحتية، والتنمية الاقتصادية."},
+  euDesc: {en:"Cooperation through Euro-Arab dialogue in trade, migration, climate action, and regional stability.", ar:"تعاون من خلال الحوار الأوروبي العربي في مجالات التجارة، والهجرة، والعمل المناخي، والاستقرار الإقليمي."},
+  aseanDesc: {en:"Partnership promoting trade, investment, economic diversification, and regional cooperation.", ar:"شراكة لتعزيز التجارة، والاستثمار، والتنويع الاقتصادي، والتعاون بين الدول العربية ودول جنوب شرق آسيا."},
+  un: {en:"United Nations", ar:"الأمم المتحدة"},
+  unesco: {en:"UNESCO", ar:"اليونسكو"},
+  unrwa: {en:"UNRWA", ar:"الأونروا"},
+  au: {en:"African Union", ar:"الاتحاد الأفريقي"},
+  eu: {en:"European Union", ar:"الاتحاد الأوروبي"},
+  asean: {en:"ASEAN", ar:"رابطة دول جنوب شرق آسيا (آسيان)"},
+}
+// =========================
+// MEMBER STATES DATA
+// =========================
+
+const countries = [
+{
+    name:{
+        en:"Egypt",
+        ar:"مصر"
+    },
+
+    joined:{
+        en:"22 March 1945 (Founding Member)",
+        ar:"22 مارس 1945 (عضو مؤسس)"
+    },
+
+    contributions:{
+        en:[
+            "Hosts the Arab League headquarters in Cairo",
+            "Leading diplomatic role in Arab affairs",
+            "Supports regional peace initiatives"
+        ],
+
+        ar:[
+            "تستضيف مقر الأمانة العامة لجامعة الدول العربية في القاهرة",
+            "تلعب دورًا دبلوماسيًا رائدًا في القضايا العربية",
+            "تدعم مبادرات السلام والتعاون الإقليمي"
+        ]
+    },
+
+    flag:"https://flagcdn.com/w160/eg.png"
+},
+{
+    name:{
+        en:"Saudi Arabia",
+        ar:"المملكة العربية السعودية"
+    },
+
+    joined:{
+        en:"22 March 1945 (Founding Member)",
+        ar:"22 مارس 1945 (عضو مؤسس)"
+    },
+
+    contributions:{
+        en:[
+            "Major financial supporter",
+            "Leader in economic cooperation",
+            "Hosts numerous Arab summits"
+        ],
+
+        ar:[
+            "تعد من أبرز الداعمين الماليين للجامعة",
+            "تسهم في تعزيز التعاون الاقتصادي العربي",
+            "استضافت العديد من القمم العربية"
+        ]
+    },
+
+    flag:"https://flagcdn.com/w160/sa.png"
+},
+{
+    name:{
+        en:"Jordan",
+        ar:"الأردن"
+    },
+
+    joined:{
+        en:"22 March 1945 (Founding Member)",
+        ar:"22 مارس 1945 (عضو مؤسس)"
+    },
+
+    contributions:{
+        en:[
+            "Regional mediation",
+            "Supports refugee initiatives",
+            "Education cooperation"
+        ],
+
+        ar:[
+            "يسهم في الوساطة الإقليمية",
+            "يدعم المبادرات الخاصة باللاجئين",
+            "يعزز التعاون في مجال التعليم"
+        ]
+    },
+
+    flag:"https://flagcdn.com/w160/jo.png"
+},
+{
+    name:{
+        en:"Iraq",
+        ar:"العراق"
+    },
+
+    joined:{
+        en:"22 March 1945 (Founding Member)",
+        ar:"22 مارس 1945 (عضو مؤسس)"
+    },
+
+    contributions:{
+        en:[
+            "Energy cooperation",
+            "Economic initiatives",
+            "Regional diplomacy"
+        ],
+
+        ar:[
+            "يعزز التعاون في قطاع الطاقة",
+            "يدعم المبادرات الاقتصادية العربية",
+            "يسهم في الجهود الدبلوماسية الإقليمية"
+        ]
+    },
+
+    flag:"https://flagcdn.com/w160/iq.png"
+},
+{
+    name:{
+        en:"Lebanon",
+        ar:"لبنان"
+    },
+
+    joined:{
+        en:"22 March 1945 (Founding Member)",
+        ar:"22 مارس 1945 (عضو مؤسس)"
+    },
+
+    contributions:{
+        en:[
+            "Cultural cooperation",
+            "Educational initiatives",
+            "Diplomatic engagement"
+        ],
+
+        ar:[
+            "يعزز التعاون الثقافي",
+            "يدعم المبادرات التعليمية",
+            "يسهم في العمل الدبلوماسي العربي"
+        ]
+    },
+
+    flag:"https://flagcdn.com/w160/lb.png"
+},
+{
+    name:{
+        en:"Syria",
+        ar:"سوريا"
+    },
+
+    joined:{
+        en:"22 March 1945",
+        ar:"22 مارس 1945"
+    },
+
+    contributions:{
+        en:[
+            "Founding member",
+            "Participation resumed in 2023",
+            "Cultural cooperation"
+        ],
+
+        ar:[
+            "من الدول المؤسسة",
+            "استؤنفت مشاركتها في عام 2023",
+            "تعزز التعاون الثقافي العربي"
+        ]
+    },
+
+    flag:"https://flagcdn.com/w160/sy.png"
+},
+{
+    name:{
+        en:"Yemen",
+        ar:"اليمن"
+    },
+
+    joined:{
+        en:"5 May 1945",
+        ar:"5 مايو 1945"
+    },
+
+    contributions:{
+        en:[
+            "Arab unity initiatives",
+            "Regional development",
+            "Political cooperation"
+        ],
+
+        ar:[
+            "يدعم مبادرات الوحدة العربية",
+            "يسهم في جهود التنمية الإقليمية",
+            "يعزز التعاون السياسي"
+        ]
+    },
+
+    flag:"https://flagcdn.com/w160/ye.png"
+},
+{
+    name:{
+        en:"Libya",
+        ar:"ليبيا"
+    },
+
+    joined:{
+        en:"28 March 1953",
+        ar:"28 مارس 1953"
+    },
+
+    contributions:{
+        en:[
+            "Energy cooperation",
+            "African-Arab relations",
+            "Development funding"
+        ],
+
+        ar:[
+            "تعزز التعاون في مجال الطاقة",
+            "تدعم العلاقات العربية الإفريقية",
+            "تسهم في تمويل مشروعات التنمية"
+        ]
+    },
+
+    flag:"https://flagcdn.com/w160/ly.png"
+},
+{
+    name:{
+        en:"Sudan",
+        ar:"السودان"
+    },
+
+    joined:{
+        en:"19 January 1956",
+        ar:"19 يناير 1956"
+    },
+
+    contributions:{
+        en:[
+            "Agricultural cooperation",
+            "Food security initiatives",
+            "Regional diplomacy"
+        ],
+
+        ar:[
+            "يعزز التعاون الزراعي",
+            "يدعم مبادرات الأمن الغذائي",
+            "يسهم في الدبلوماسية الإقليمية"
+        ]
+    },
+
+    flag:"https://flagcdn.com/w160/sd.png"
+},
+{
+    name:{
+        en:"Morocco",
+        ar:"المغرب"
+    },
+
+    joined:{
+        en:"1 October 1958",
+        ar:"1 أكتوبر 1958"
+    },
+
+    contributions:{
+        en:[
+            "Cultural preservation",
+            "Trade cooperation",
+            "Migration initiatives"
+        ],
+
+        ar:[
+            "يحافظ على التراث الثقافي العربي",
+            "يعزز التعاون التجاري",
+            "يدعم مبادرات الهجرة والتنمية"
+        ]
+    },
+
+    flag:"https://flagcdn.com/w160/ma.png"
+},
+{
+    name:{
+        en:"Tunisia",
+        ar:"تونس"
+    },
+
+    joined:{
+        en:"1 October 1958",
+        ar:"1 أكتوبر 1958"
+    },
+
+    contributions:{
+        en:[
+            "Education reforms",
+            "Women's empowerment",
+            "Democratic dialogue"
+        ],
+
+        ar:[
+            "يسهم في تطوير التعليم",
+            "يدعم تمكين المرأة",
+            "يعزز الحوار الديمقراطي"
+        ]
+    },
+
+    flag:"https://flagcdn.com/w160/tn.png"
+},
+{
+    name:{
+        en:"Kuwait",
+        ar:"الكويت"
+    },
+
+    joined:{
+        en:"20 July 1961",
+        ar:"20 يوليو 1961"
+    },
+
+    contributions:{
+        en:[
+            "Humanitarian aid",
+            "Development funding",
+            "Economic initiatives"
+        ],
+
+        ar:[
+            "تقدم مساعدات إنسانية واسعة",
+            "تمول مشروعات التنمية",
+            "تدعم المبادرات الاقتصادية"
+        ]
+    },
+
+    flag:"https://flagcdn.com/w160/kw.png"
+},
+{
+    name:{
+        en:"Algeria",
+        ar:"الجزائر"
+    },
+
+    joined:{
+        en:"16 August 1962",
+        ar:"16 أغسطس 1962"
+    },
+
+    contributions:{
+        en:[
+            "Support for liberation movements",
+            "Peace mediation",
+            "Energy cooperation"
+        ],
+
+        ar:[
+            "دعمت حركات التحرر",
+            "تسهم في جهود الوساطة والسلام",
+            "تعزز التعاون في مجال الطاقة"
+        ]
+    },
+
+    flag:"https://flagcdn.com/w160/dz.png"
+},
+{
+    name:{
+        en:"Bahrain",
+        ar:"البحرين"
+    },
+
+    joined:{
+        en:"11 September 1971",
+        ar:"11 سبتمبر 1971"
+    },
+
+    contributions:{
+        en:[
+            "Financial sector cooperation",
+            "Regional security",
+            "Digital transformation"
+        ],
+
+        ar:[
+            "تعزز التعاون في القطاع المالي",
+            "تدعم الأمن الإقليمي",
+            "تشجع التحول الرقمي"
+        ]
+    },
+
+    flag:"https://flagcdn.com/w160/bh.png"
+},
+{
+    name:{
+        en:"Qatar",
+        ar:"قطر"
+    },
+
+    joined:{
+        en:"11 September 1971",
+        ar:"11 سبتمبر 1971"
+    },
+
+    contributions:{
+        en:[
+            "Humanitarian support",
+            "Education initiatives",
+            "Conflict mediation"
+        ],
+
+        ar:[
+            "تقدم دعماً إنسانياً",
+            "تدعم المبادرات التعليمية",
+            "تسهم في الوساطة لحل النزاعات"
+        ]
+    },
+
+    flag:"https://flagcdn.com/w160/qa.png"
+},
+{
+    name:{
+        en:"Oman",
+        ar:"سلطنة عُمان"
+    },
+
+    joined:{
+        en:"29 September 1971",
+        ar:"29 سبتمبر 1971"
+    },
+
+    contributions:{
+        en:[
+            "Neutral diplomacy",
+            "Regional mediation",
+            "Maritime cooperation"
+        ],
+
+        ar:[
+            "تتميز بسياسة دبلوماسية متوازنة",
+            "تدعم جهود الوساطة الإقليمية",
+            "تعزز التعاون البحري"
+        ]
+    },
+
+    flag:"https://flagcdn.com/w160/om.png"
+},
+{
+    name:{
+        en:"United Arab Emirates",
+        ar:"الإمارات العربية المتحدة"
+    },
+
+    joined:{
+        en:"6 December 1971",
+        ar:"6 ديسمبر 1971"
+    },
+
+    contributions:{
+        en:[
+            "Technology investment",
+            "Humanitarian aid",
+            "Economic diversification"
+        ],
+
+        ar:[
+            "تستثمر في التكنولوجيا والابتكار",
+            "تقدم مساعدات إنسانية وتنموية",
+            "تدعم تنويع الاقتصاد العربي"
+        ]
+    },
+
+    flag:"https://flagcdn.com/w160/ae.png"
+},
+{
+    name:{
+        en:"Mauritania",
+        ar:"موريتانيا"
+    },
+
+    joined:{
+        en:"26 November 1973",
+        ar:"26 نوفمبر 1973"
+    },
+
+    contributions:{
+        en:[
+            "Food security",
+            "African cooperation",
+            "Environmental initiatives"
+        ],
+
+        ar:[
+            "تدعم الأمن الغذائي",
+            "تعزز التعاون العربي الإفريقي",
+            "تشارك في المبادرات البيئية"
+        ]
+    },
+
+    flag:"https://flagcdn.com/w160/mr.png"
+},
+{
+    name:{
+        en:"Somalia",
+        ar:"الصومال"
+    },
+
+    joined:{
+        en:"14 February 1974",
+        ar:"14 فبراير 1974"
+    },
+
+    contributions:{
+        en:[
+            "Maritime security",
+            "Regional stability",
+            "Development partnerships"
+        ],
+
+        ar:[
+            "تعزز الأمن البحري",
+            "تدعم الاستقرار الإقليمي",
+            "تسهم في شراكات التنمية"
+        ]
+    },
+
+    flag:"https://flagcdn.com/w160/so.png"
+},
+{
+    name:{
+        en:"Palestine",
+        ar:"فلسطين"
+    },
+
+    joined:{
+        en:"9 September 1976",
+        ar:"9 سبتمبر 1976"
+    },
+
+    contributions:{
+        en:[
+            "Representation of Palestinian interests",
+            "Regional diplomacy",
+            "Cultural preservation"
+        ],
+
+        ar:[
+            "تمثل المصالح الفلسطينية داخل الجامعة",
+            "تشارك في العمل الدبلوماسي العربي",
+            "تحافظ على التراث والثقافة الفلسطينية"
+        ]
+    },
+
+    flag:"https://flagcdn.com/w160/ps.png"
+},
+{
+    name:{
+        en:"Djibouti",
+        ar:"جيبوتي"
+    },
+
+    joined:{
+        en:"4 September 1977",
+        ar:"4 سبتمبر 1977"
+    },
+
+    contributions:{
+        en:[
+            "Strategic maritime cooperation",
+            "Horn of Africa dialogue",
+            "Trade connectivity"
+        ],
+
+        ar:[
+            "تعزز التعاون البحري الاستراتيجي",
+            "تدعم الحوار في منطقة القرن الإفريقي",
+            "تسهم في تعزيز الربط التجاري"
+        ]
+    },
+
+    flag:"https://flagcdn.com/w160/dj.png"
+},
+{
+    name:{
+        en:"Comoros",
+        ar:"جزر القمر"
+    },
+
+    joined:{
+        en:"20 November 1993",
+        ar:"20 نوفمبر 1993"
+    },
+
+    contributions:{
+        en:[
+            "Indian Ocean cooperation",
+            "Cultural exchange",
+            "Environmental protection"
+        ],
+
+        ar:[
+            "تعزز التعاون في المحيط الهندي",
+            "تدعم التبادل الثقافي",
+            "تسهم في حماية البيئة"
+        ]
+    },
+
+    flag:"https://flagcdn.com/w160/km.png"
+}
+];
+
+// =======================================
+
+const track = document.querySelector(".flags-track");
+const info = document.querySelector(".country-info");
+
+let current = 0;
+
+// =======================================
+// CREATE FLAGS
+// =======================================
+
+countries.forEach((country,index)=>{
+
+    const img=document.createElement("img");
+
+    img.src=country.flag;
+    img.alt=country.name;
+    img.className="flag";
+
+    img.onclick=()=>{
+
+        current=index;
+
+        updateCarousel();
+
+    };
+
+    track.appendChild(img);
+
+});
+
+// =======================================
+// UPDATE INFO
+// =======================================
+
+function showCountry(i){
+
+    const c = countries[i];
+
+    const isArabic = document.documentElement.lang === "ar";
+
+    const lang = isArabic ? "ar" : "en";
+
+    info.innerHTML = `
+        <h2 class="country-title">${c.name[lang]}</h2>
+
+        <div class="country-section">
+
+            <h3>${isArabic ? "تاريخ الانضمام" : "Joined"}</h3>
+
+            <p>${c.joined[lang]}</p>
+
+        </div>
+
+        <div class="country-section">
+
+            <h3>${isArabic ? "أبرز المساهمات" : "Major Contributions"}</h3>
+
+            <ul>
+
+                ${c.contributions[lang]
+                    .map(item=>`<li>${item}</li>`)
+                    .join("")}
+
+            </ul>
+
+        </div>
+    `;
+}
+
+// =======================================
+// UPDATE CAROUSEL
+// =======================================
+
+function updateCarousel(){
+
+    const flags=document.querySelectorAll(".flag");
+
+    flags.forEach(flag=>{
+        flag.classList.remove("prev","active","next");
+        flag.style.display="none";
+    });
+
+    let prev=current-1;
+    if(prev<0) prev=countries.length-1;
+
+    let next=current+1;
+    if(next>=countries.length) next=0;
+
+    flags[prev].style.display="block";
+    flags[current].style.display="block";
+    flags[next].style.display="block";
+
+    flags[prev].classList.add("prev");
+    flags[current].classList.add("active");
+    flags[next].classList.add("next");
+
+    showCountry(current);
+
+}
+
+// =======================================
+// NEXT
+// =======================================
+
+function nextCountry(){
+
+    current++;
+
+    if(current>=countries.length)
+        current=0;
+
+    updateCarousel();
+
+}
+
+// =======================================
+// PREVIOUS
+// =======================================
+
+function prevCountry(){
+
+    current--;
+
+    if(current<0)
+        current=countries.length-1;
+
+    updateCarousel();
+
+}
+
+// =======================================
+// AUTO SLIDE
+// =======================================
+
+let autoSlide=setInterval(nextCountry,4000);
+
+// =======================================
+// PAUSE
+// =======================================
+
+track.addEventListener("mouseenter",()=>{
+
+    clearInterval(autoSlide);
+
+});
+
+track.addEventListener("mouseleave",()=>{
+
+    autoSlide=setInterval(nextCountry,4000);
+
+});
+
+// =======================================
+// BUTTONS
+// =======================================
+
+document.querySelector(".next-flag").onclick=()=>{
+
+    clearInterval(autoSlide);
+
+    nextCountry();
+
 };
+
+document.querySelector(".prev-flag").onclick=()=>{
+
+    clearInterval(autoSlide);
+
+    prevCountry();
+
+};
+
+// =======================================
+// START
+// =======================================
+
+updateCarousel();
 
 function setLang(lang){
   document.getElementById('htmlRoot').setAttribute('lang', lang);
